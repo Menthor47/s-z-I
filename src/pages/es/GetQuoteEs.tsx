@@ -427,10 +427,18 @@ const GetQuoteEs = () => {
                 Tu petición ha sido registrada. Nuestro equipo revisará los datos y te enviará un presupuesto formal en menos de 2 horas hábiles.
               </p>
               <ul className="text-sm text-muted-foreground space-y-2 text-left max-w-md mx-auto">
-                <li>✓ Confirmación enviada a {formData.email}</li>
+                <li>✓ Te contactaremos en las próximas 2 horas hábiles.</li>
                 <li>✓ Nuestro equipo revisa los requisitos</li>
                 <li>✓ Recibirás un presupuesto formal muy pronto</li>
-                <li>✓ ¿Dudas? Llámanos al {BUSINESS_INFO.phone}</li>
+                <li className="text-base">
+                  ✓ ¿Dudas? Llámanos al{" "}
+                  <a
+                    href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                    className="font-semibold"
+                  >
+                    {BUSINESS_INFO.phone}
+                  </a>
+                </li>
               </ul>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

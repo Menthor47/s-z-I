@@ -417,10 +417,18 @@ const GetQuote = () => {
             <div className="bg-muted/30 p-6 rounded-lg max-w-md mx-auto">
               <p className="font-medium mb-2">What happens next?</p>
               <ul className="text-sm text-muted-foreground space-y-2 text-left">
-                <li>✓ Email confirmation sent to {formData.email}</li>
+                <li>✓ You'll hear from us within the next 2 business hours.</li>
                 <li>✓ Our team reviews your requirements</li>
                 <li>✓ You'll receive a formal quote within 2 hours</li>
-                <li>✓ Questions? Call us at {BUSINESS_INFO.phone}</li>
+                <li className="text-base">
+                  ✓ Questions? Call us at{" "}
+                  <a
+                    href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                    className="font-semibold"
+                  >
+                    {BUSINESS_INFO.phone}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
