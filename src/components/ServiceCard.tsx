@@ -9,20 +9,31 @@ interface ServiceCardProps {
   title: string;
   description: string;
   priceRange: string;
+  badge?: string;
+  highlight?: boolean;
 }
 
-export const ServiceCard = ({ icon: Icon, title, description, priceRange }: ServiceCardProps) => {
+export const ServiceCard = ({ icon: Icon, title, description, priceRange, badge, highlight }: ServiceCardProps): JSX.Element => {
   const { isSpanish } = useLocale();
   const basePath = isSpanish ? "/es" : "";
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <Card className={`group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${highlight ? "border border-primary/40 bg-primary/5 shadow-md" : ""}`}>
       <CardHeader>
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
-          <Icon className="h-6 w-6 text-primary" />
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
+              <Icon className="h-6 w-6 text-primary" />
+            </div>
+            <CardTitle className="text-xl">{title}</CardTitle>
+            <CardDescription>{description}</CardDescription>
+          </div>
+          {badge && (
+            <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white shadow-sm">
+              {badge}
+            </span>
+          )}
         </div>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-baseline space-x-2">

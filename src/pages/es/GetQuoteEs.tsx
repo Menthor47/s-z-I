@@ -22,8 +22,6 @@ const steps = [
   "Ruta",
   "Carga",
   "Contacto",
-  "Resumen",
-  "Completado",
 ];
 
 const GetQuoteEs = () => {
@@ -135,7 +133,7 @@ const GetQuoteEs = () => {
 
   const nextStep = () => {
     if (validateStep(step)) {
-      setStep((prev) => Math.min(prev + 1, steps.length));
+      setStep((prev) => Math.min(prev + 1, 4));
       if (step === 3) {
         calculateEstimate();
       }
@@ -199,7 +197,7 @@ const GetQuoteEs = () => {
         title: "¡Solicitud enviada!",
         description: "Nuestro equipo te contactará en menos de 2 horas.",
       });
-      setStep(6);
+      setStep(5);
     } catch (error: any) {
       console.error("Quote submission error:", error);
       toast({
@@ -417,52 +415,6 @@ const GetQuoteEs = () => {
         );
       case 5:
         return (
-          <div className="space-y-6">
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-semibold">Resumen del presupuesto</h3>
-              <p className="text-muted-foreground">
-                Revisa los detalles antes de enviar. Puedes volver atrás para ajustar cualquier campo.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Servicio y ruta</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 text-sm">
-                  <p><span className="text-muted-foreground">Servicio:</span> {serviceOptions.find((s) => s.value === formData.serviceType)?.label || ""}</p>
-                  <p><span className="text-muted-foreground">Origen:</span> {formData.origin}</p>
-                  <p><span className="text-muted-foreground">Destino:</span> {formData.destination}</p>
-                  <p><span className="text-muted-foreground">Recogida:</span> {formData.pickupDate || "Por confirmar"}</p>
-                  <p><span className="text-muted-foreground">Entrega:</span> {formData.deliveryDate || "Por confirmar"}</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Carga y requisitos</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 text-sm">
-                  <p><span className="text-muted-foreground">Peso:</span> {formData.weight} kg</p>
-                  <p><span className="text-muted-foreground">Dimensiones:</span> {formData.length || "-"} x {formData.width || "-"} x {formData.height || "-"} cm</p>
-                  <p><span className="text-muted-foreground">Requisitos:</span> {formData.specialRequirements.length ? formData.specialRequirements.join(", ") : "Ninguno"}</p>
-                  {estimatedCost && (
-                    <p className="text-lg font-semibold">Coste estimado: {estimatedCost} €</p>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-between">
-              <Button variant="outline" onClick={prevStep}>Atrás</Button>
-              <Button onClick={handleSubmit} disabled={loading}>
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Enviar solicitud
-              </Button>
-            </div>
-          </div>
-        );
-      case 6:
-        return (
           <div className="text-center space-y-6 py-16">
             <div className="flex justify-center">
               <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
@@ -524,25 +476,27 @@ const GetQuoteEs = () => {
       <section className="py-16 flex-1">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="space-y-8">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-muted-foreground">Paso {step} de {steps.length}</span>
-                <span className="text-sm font-medium">{steps[step - 1]}</span>
+            {step <= steps.length && (
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-muted-foreground">Paso {step} de {steps.length}</span>
+                  <span className="text-sm font-medium">{steps[step - 1]}</span>
+                </div>
+                <Progress value={(step / steps.length) * 100} className="h-2" />
               </div>
-              <Progress value={(step / steps.length) * 100} className="h-2" />
-            </div>
+            )}
 
             <Card>
               <CardContent className="p-6 space-y-8">
                 {renderStep()}
-                {step < 6 && (
+                {step <= 4 && (
                   <div className="flex justify-between">
                     {step > 1 && (
                       <Button variant="outline" onClick={prevStep}>
                         Atrás
                       </Button>
                     )}
-                    {step === 5 ? (
+                    {step === 4 ? (
                       <Button
                         className="ml-auto"
                         disabled={loading}

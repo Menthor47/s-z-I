@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { ServicesFaqSchema } from "@/components/StructuredData";
+import heroImage from "@/assets/hero-truck.jpg";
 
 const Services = () => {
   const services = [
@@ -18,7 +19,7 @@ const Services = () => {
       description: "Complete nationwide coverage across Spain with flexible delivery options for all cargo types.",
       coverage: "All Spanish provinces and major cities",
       deliveryTime: "24-48 hours nationwide",
-      priceRange: "€150 - €800",
+      priceRange: "€150 - €800 per shipment (typical range)",
       benefits: [
         "Next-day delivery to major cities",
         "Real-time GPS tracking",
@@ -33,7 +34,7 @@ const Services = () => {
       description: "Seamless cross-border logistics connecting Spain with 25+ European countries.",
       coverage: "EU27 plus UK, Switzerland, Norway",
       deliveryTime: "2-7 days depending on destination",
-      priceRange: "€450 - €2,500",
+      priceRange: "€450 - €2,500 per shipment (typical range)",
       benefits: [
         "Customs clearance assistance",
         "Multi-drop delivery routes",
@@ -48,7 +49,7 @@ const Services = () => {
       description: "Professional office and business relocations with minimal downtime and maximum care.",
       coverage: "Spain and major European cities",
       deliveryTime: "Scheduled based on project",
-      priceRange: "€800 - €5,000",
+      priceRange: "€800 - €5,000 per relocation project",
       benefits: [
         "Pre-move planning consultation",
         "IT equipment specialized handling",
@@ -63,7 +64,7 @@ const Services = () => {
       description: "Worldwide ocean and air freight services for international trade and distribution.",
       coverage: "150+ countries worldwide",
       deliveryTime: "5-30 days (air/sea)",
-      priceRange: "€1,200 - €15,000",
+      priceRange: "€1,200 - €15,000 per international shipment",
       benefits: [
         "Dedicated customs broker support",
         "FCL and LCL container options",
@@ -93,7 +94,7 @@ const Services = () => {
       description: "Expert analysis and optimization of your logistics operations to reduce costs and improve efficiency.",
       coverage: "Remote and on-site consultations",
       deliveryTime: "Project-based",
-      priceRange: "€500 - €5,000",
+      priceRange: "€500 - €5,000 per project",
       benefits: [
         "Cost reduction analysis",
         "Route optimization strategies",
@@ -119,11 +120,20 @@ const Services = () => {
           <div className="mb-4 text-left">
             <PageBreadcrumbs items={[{ label: "Home", to: "/" }, { label: "Services" }]} />
           </div>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-            <p className="text-xl text-muted-foreground">
-              Comprehensive freight and logistics solutions designed for modern businesses. Choose the service that fits your needs.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="max-w-xl mx-auto md:mx-0 text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
+              <p className="text-xl text-muted-foreground">
+                Comprehensive freight and logistics solutions designed for modern businesses. Choose the service that fits your lanes, cargo and budget.
+              </p>
+            </div>
+            <div className="relative h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden shadow-md">
+              <img
+                src={heroImage}
+                alt="Fleet of modern freight trucks"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

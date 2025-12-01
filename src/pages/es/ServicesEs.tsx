@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { ServicesFaqSchema } from "@/components/StructuredData";
+import heroImage from "@/assets/hero-truck.jpg";
 
 const ServicesEs = () => {
   const services = [
@@ -18,7 +19,7 @@ const ServicesEs = () => {
       description: "Cobertura total en España con opciones flexibles para todo tipo de carga.",
       coverage: "Todas las provincias y principales ciudades españolas",
       deliveryTime: "24-48 horas en territorio nacional",
-      priceRange: "150 € - 800 €",
+      priceRange: "150 € - 800 € por envío (rango habitual)",
       benefits: [
         "Entregas en 24 h a las principales ciudades",
         "Seguimiento GPS en tiempo real",
@@ -33,7 +34,7 @@ const ServicesEs = () => {
       description: "Logística transfronteriza conectando España con más de 25 países europeos.",
       coverage: "UE27, Reino Unido, Suiza y Noruega",
       deliveryTime: "2-7 días según destino",
-      priceRange: "450 € - 2.500 €",
+      priceRange: "450 € - 2.500 € por envío",
       benefits: [
         "Asistencia en trámites aduaneros",
         "Rutas multi entrega",
@@ -48,7 +49,7 @@ const ServicesEs = () => {
       description: "Traslados profesionales de oficinas y negocios con el máximo cuidado.",
       coverage: "España y principales ciudades europeas",
       deliveryTime: "Calendario según proyecto",
-      priceRange: "800 € - 5.000 €",
+      priceRange: "500 € - 5.000 € por proyecto de reubicación",
       benefits: [
         "Planificación previa al traslado",
         "Manejo especializado de equipamiento IT",
@@ -63,7 +64,7 @@ const ServicesEs = () => {
       description: "Servicios marítimos y aéreos para comercio internacional.",
       coverage: "Más de 150 países",
       deliveryTime: "5-30 días (aire/marítimo)",
-      priceRange: "1.200 € - 15.000 €",
+      priceRange: "1.200 € - 15.000 € por envío internacional",
       benefits: [
         "Apoyo dedicado en aduanas",
         "Opciones FCL y LCL",
@@ -93,7 +94,7 @@ const ServicesEs = () => {
       description: "Análisis experto para reducir costes y mejorar la eficiencia.",
       coverage: "Consultoría remota y presencial",
       deliveryTime: "Según proyecto",
-      priceRange: "500 € - 5.000 €",
+      priceRange: "500 € - 5.000 € por proyecto",
       benefits: [
         "Análisis de reducción de costes",
         "Estrategias de optimización de rutas",
@@ -119,11 +120,20 @@ const ServicesEs = () => {
           <div className="mb-4 text-left">
             <PageBreadcrumbs items={[{ label: "Inicio", to: "/es" }, { label: "Servicios" }]} />
           </div>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Nuestros servicios</h1>
-            <p className="text-xl text-muted-foreground">
-              Soluciones logísticas completas para empresas modernas. Elige el servicio que mejor se adapte a tus operaciones.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="max-w-xl mx-auto md:mx-0 text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Nuestros servicios</h1>
+              <p className="text-xl text-muted-foreground">
+                Soluciones logísticas completas para empresas modernas. Elige el servicio que mejor se adapte a tus rutas, carga y presupuesto.
+              </p>
+            </div>
+            <div className="relative h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden shadow-md">
+              <img
+                src={heroImage}
+                alt="Camiones de transporte en ruta"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -111,7 +111,7 @@ const GetQuote = () => {
 
   const nextStep = () => {
     if (validateStep(step)) {
-      setStep((prev) => Math.min(prev + 1, 6));
+      setStep((prev) => Math.min(prev + 1, 4));
       if (step === 3) {
         calculateEstimate();
       }
@@ -176,7 +176,7 @@ const GetQuote = () => {
         description: "Our team will contact you within 2 hours with a formal quote.",
       });
       
-      setStep(6);
+      setStep(5);
     } catch (error: any) {
       console.error("Quote submission error:", error);
       toast({
@@ -404,54 +404,6 @@ const GetQuote = () => {
       
       case 5:
         return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-2">Your Estimated Quote</h3>
-              <p className="text-muted-foreground">Based on the information provided</p>
-            </div>
-            <Card className="border-2 border-primary/20">
-              <CardContent className="p-8">
-                <div className="text-center space-y-4">
-                  <div className="text-5xl font-bold text-primary">
-                    €{estimatedCost?.toLocaleString()}
-                  </div>
-                  <p className="text-muted-foreground">Estimated Cost</p>
-                  <div className="border-t pt-4 mt-4">
-                    <div className="grid grid-cols-2 gap-4 text-left text-sm">
-                      <div>
-                        <span className="text-muted-foreground">Service:</span>
-                        <p className="font-medium">{formData.serviceType.replace("-", " ")}</p>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Route:</span>
-                        <p className="font-medium">{formData.origin} → {formData.destination}</p>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Weight:</span>
-                        <p className="font-medium">{formData.weight} kg</p>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Special Req:</span>
-                        <p className="font-medium">{formData.specialRequirements.length || "None"}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <div className="bg-muted/50 p-4 rounded-lg text-sm text-muted-foreground">
-              <p className="font-medium mb-2">Please Note:</p>
-              <ul className="space-y-1 list-disc list-inside">
-                <li>This is an automated estimate for reference only</li>
-                <li>Final pricing will be confirmed by our team within 2 hours</li>
-                <li>Additional fees may apply for special handling or insurance</li>
-              </ul>
-            </div>
-          </div>
-        );
-      
-      case 6:
-        return (
           <div className="text-center space-y-6 py-8">
             <div className="flex justify-center">
               <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
@@ -510,13 +462,13 @@ const GetQuote = () => {
           <div className="mb-4 text-left">
             <PageBreadcrumbs items={[{ label: "Home", to: "/" }, { label: "Get Quote" }]} />
           </div>
-          {step < 6 && (
+          {step <= 4 && (
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Get Your Quote</h2>
-                <span className="text-sm text-muted-foreground">Step {step} of 5</span>
+                <span className="text-sm text-muted-foreground">Step {step} of 4</span>
               </div>
-              <Progress value={(step / 5) * 100} className="h-2" />
+              <Progress value={(step / 4) * 100} className="h-2" />
             </div>
           )}
 
@@ -524,14 +476,14 @@ const GetQuote = () => {
             <CardContent className="p-8">
               {renderStep()}
 
-              {step < 6 && (
+              {step <= 4 && (
                 <div className="flex justify-between mt-8 pt-6 border-t">
                   {step > 1 && (
                     <Button variant="outline" onClick={prevStep}>
                       Back
                     </Button>
                   )}
-                  {step === 5 ? (
+                  {step === 4 ? (
                     <Button
                       className="ml-auto"
                       disabled={loading}

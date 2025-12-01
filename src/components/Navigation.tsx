@@ -98,9 +98,16 @@ export const Navigation = () => {
           ))}
           <Link
             to={localeTogglePath}
-            className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+            className="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
-            {isSpanish ? "English" : "Español"}
+            <span
+              className="text-lg"
+              role="img"
+              aria-label={isSpanish ? "UK flag" : "Spanish flag"}
+            >
+              {isSpanish ? "🇬🇧" : "🇪🇸"}
+            </span>
+            <span>{isSpanish ? "English" : "Español"}</span>
           </Link>
         </nav>
 
@@ -141,9 +148,16 @@ export const Navigation = () => {
                 <Link
                   to={localeTogglePath}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="flex items-center gap-2 text-lg font-medium transition-colors hover:text-primary"
                 >
-                  {isSpanish ? "English" : "Español"}
+                  <span
+                    className="text-xl"
+                    role="img"
+                    aria-label={isSpanish ? "UK flag" : "Spanish flag"}
+                  >
+                    {isSpanish ? "🇬🇧" : "🇪🇸"}
+                  </span>
+                  <span>{isSpanish ? "English" : "Español"}</span>
                 </Link>
                 <a href={`tel:${businessInfo.phoneRaw}`} className="flex items-center space-x-2 text-lg font-medium pt-4 border-t">
                   <Phone className="h-5 w-5" />

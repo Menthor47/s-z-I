@@ -19,37 +19,41 @@ const IndexEs = () => {
       icon: Truck,
       title: "Transporte nacional",
       description: "Cobertura en toda España con opciones de entrega en 24h",
-      priceRange: "150 €",
+      priceRange: "150 € por envío",
+      badge: "Más solicitado",
+      highlight: true,
     },
     {
       icon: Globe,
       title: "Transporte europeo",
       description: "Logística transfronteriza en más de 25 países europeos",
-      priceRange: "450 €",
+      priceRange: "450 € por envío",
+      badge: "Ideal para exportaciones",
+      highlight: true,
     },
     {
       icon: Warehouse,
       title: "Servicios de reubicación",
       description: "Traslados empresariales y de oficinas con el máximo cuidado",
-      priceRange: "800 €",
+      priceRange: "800 € por proyecto de reubicación",
     },
     {
       icon: Ship,
       title: "Logística global",
       description: "Transporte marítimo y aéreo a todo el mundo",
-      priceRange: "1.200 €",
+      priceRange: "Desde 1.200 € por envío internacional",
     },
     {
       icon: Warehouse,
       title: "Soluciones de almacenaje",
       description: "Instalaciones seguras en los principales hubs de España",
-      priceRange: "200 €/mes",
+      priceRange: "Desde 200 €/mes",
     },
     {
       icon: TrendingUp,
       title: "Consultoría de supply chain",
       description: "Optimizamos tus operaciones logísticas",
-      priceRange: "500 €",
+      priceRange: "500 € por proyecto",
     },
   ];
 
@@ -79,12 +83,14 @@ const IndexEs = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Transporte y Logística
-                <span className="text-primary block">para España y Europa</span>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                Nueva competencia desde 2022.
+                <span className="text-primary block">
+                  El partner de reubicación y logística más competitivo de España. Entregando en toda Europa.
+                </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-xl">
-                Logística fiable y rentable para tu empresa. Desde Madrid hasta Múnich, entregamos a tiempo, todos los días.
+                Seguimos con hambre. Seguimos siendo competitivos. 3 años ofreciendo los resultados que los clientes españoles se merecen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="text-lg">

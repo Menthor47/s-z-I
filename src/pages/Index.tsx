@@ -19,37 +19,41 @@ const Index = () => {
       icon: Truck,
       title: "Spanish Road Transport",
       description: "Nationwide coverage with next-day delivery options",
-      priceRange: "€150",
+      priceRange: "€150+ per shipment",
+      badge: "Most Popular",
+      highlight: true,
     },
     {
       icon: Globe,
       title: "European Road Freight",
       description: "Cross-border logistics across 25+ European countries",
-      priceRange: "€450",
+      priceRange: "€450+ per shipment",
+      badge: "Best for EU lanes",
+      highlight: true,
     },
     {
       icon: Warehouse,
       title: "Relocation Services",
       description: "Business and office relocations with care",
-      priceRange: "€800",
+      priceRange: "€500+ per relocation project",
     },
     {
       icon: Ship,
       title: "Global Logistics",
       description: "Ocean and air freight worldwide",
-      priceRange: "€1,200",
+      priceRange: "€1,200+ per international shipment",
     },
     {
       icon: Warehouse,
       title: "Warehousing Solutions",
       description: "Secure storage facilities across Spain",
-      priceRange: "€200/mo",
+      priceRange: "€200+/month",
     },
     {
       icon: TrendingUp,
       title: "Supply Chain Consultancy",
       description: "Optimize your logistics operations",
-      priceRange: "€500",
+      priceRange: "€500+ per project",
     },
   ];
 
@@ -79,7 +83,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                 Fresh Competition Since 2022.
                 <span className="text-primary block">
                   Spain's Most Competitive Relocation & Logistics Partner. Delivering Across Europe.
