@@ -13,7 +13,10 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Relocation from "./pages/Relocation";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 import RelocationCity from "./pages/RelocationCity";
 import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/ResourceArticle";
@@ -37,7 +40,10 @@ const routes = [
   { path: "/about", element: <About />, spanishElement: <AboutEs /> },
   { path: "/contact", element: <Contact />, spanishElement: <ContactEs /> },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   { path: "/relocation/:citySlug", element: <RelocationCity />, spanishElement: <RelocationCityEs /> },
   { path: "/resources", element: <Resources />, spanishElement: <ResourcesEs /> },
   { path: "/resources/:slug", element: <ResourceArticle />, spanishElement: <ResourceArticleEs /> },

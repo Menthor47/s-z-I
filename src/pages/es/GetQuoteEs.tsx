@@ -188,8 +188,11 @@ const GetQuoteEs = () => {
       }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       console.log("Quote successfully inserted:", data[0]);
 =======
+=======
+>>>>>>> Stashed changes
       trackQuoteSubmitted({
         locale: "es",
         serviceType: formData.serviceType,

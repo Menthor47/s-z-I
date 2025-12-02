@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 =======
 import { Link, useNavigate } from "react-router-dom";
 import { ServiceSchema } from "@/components/StructuredData";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 const Relocation = () => {

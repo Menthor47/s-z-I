@@ -17,6 +17,9 @@ import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { loadAttribution } from "@/lib/attribution";
 import { trackContactSubmitted } from "@/lib/tracking";
 import { ContactPageSchema } from "@/components/StructuredData";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 const Contact = () => {

@@ -18,6 +18,9 @@ import { BUSINESS_INFO } from "@/lib/constants.es";
 import { loadAttribution } from "@/lib/attribution";
 import { trackContactSubmitted } from "@/lib/tracking";
 import { ContactPageSchema } from "@/components/StructuredData";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 const ContactEs = () => {
