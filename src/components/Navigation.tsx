@@ -30,6 +30,7 @@ export const Navigation = () => {
         ? [
             { label: "Servicios", path: `${basePath}/services` },
             { label: "Reubicación", path: `${basePath}/relocation` },
+            { label: "Recursos", path: `${basePath}/resources` },
             { label: "Solicitar presupuesto", path: `${basePath}/get-quote` },
             { label: "Sobre nosotros", path: `${basePath}/about` },
             { label: "Contacto", path: `${basePath}/contact` },
@@ -37,6 +38,7 @@ export const Navigation = () => {
         : [
             { label: "Services", path: `/services` },
             { label: "Relocation", path: `/relocation` },
+            { label: "Resources", path: `/resources` },
             { label: "Get Quote", path: `/get-quote` },
             { label: "About", path: `/about` },
             { label: "Contact", path: `/contact` },

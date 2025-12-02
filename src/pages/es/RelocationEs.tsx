@@ -1,14 +1,17 @@
+import type { FormEvent } from "react";
 import { Navigation } from "@/components/Navigation";
 import { FooterEs } from "@/components/es/FooterEs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Truck, Package, MapPin, Clock, Shield, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 
 export const RelocationEs = () => {
+  const navigate = useNavigate();
+
   const features = [
     {
       icon: MapPin,
@@ -59,6 +62,25 @@ export const RelocationEs = () => {
       description: "Montaje y distribución según planos en el nuevo espacio.",
     },
   ];
+
+  const handleSmartCtaSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const emailElement = form.elements.namedItem("email") as HTMLInputElement | null;
+    const plannedDateElement = form.elements.namedItem("plannedDate") as HTMLInputElement | null;
+
+    const email = emailElement?.value ?? "";
+    const plannedDate = plannedDateElement?.value ?? "";
+
+    navigate("/es/get-quote?service=relocation", {
+      state: {
+        serviceType: "relocation",
+        email,
+        plannedDate,
+      },
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -215,6 +237,28 @@ export const RelocationEs = () => {
                   <Link to="/es/contact">Habla con un experto</Link>
                 </Button>
               </div>
+              <div className="mt-6 text-sm text-muted-foreground space-y-1">
+                <p>
+                  ¿Quieres preparar mejor tu traslado? Lee nuestra{" "}
+                  <Link
+                    to="/es/resources/guia-mudarse-a-espana"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    guía completa para mudarse a España
+                  </Link>
+                  .
+                </p>
+                <p>
+                  Si gestionas una oficina, consulta la{" "}
+                  <Link
+                    to="/es/resources/checklist-mudanza-oficina"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    checklist para una mudanza de oficina sin estrés
+                  </Link>
+                  .
+                </p>
+              </div>
             </div>
             
             <div className="bg-muted rounded-lg p-8">
@@ -223,10 +267,13 @@ export const RelocationEs = () => {
                 Cuéntanos sobre tu próximo proyecto de reubicación y te haremos una propuesta personalizada.
               </p>
               
-              <div className="space-y-4">
+              <form onSubmit={handleSmartCtaSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">Tipo de reubicación</label>
-                  <select className="w-full px-4 py-2 border rounded-md bg-background">
+                  <select
+                    name="relocationType"
+                    className="w-full px-4 py-2 border rounded-md bg-background"
+                  >
                     <option>Oficina</option>
                     <option>Almacén</option>
                     <option>Comercio</option>
@@ -237,25 +284,40 @@ export const RelocationEs = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">M2 aproximados</label>
-                    <input type="text" className="w-full px-4 py-2 border rounded-md bg-background" placeholder="Ej: 150 m²" />
+                    <input
+                      type="text"
+                      name="approxM2"
+                      className="w-full px-4 py-2 border rounded-md bg-background"
+                      placeholder="Ej: 150 m²"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Fecha prevista</label>
-                    <input type="text" className="w-full px-4 py-2 border rounded-md bg-background" placeholder="Seleccionar fecha" />
+                    <input
+                      type="text"
+                      name="plannedDate"
+                      className="w-full px-4 py-2 border rounded-md bg-background"
+                      placeholder="Seleccionar fecha"
+                    />
                   </div>
                 </div>
                 
                 <div>
                   <label className="block text-sm font-medium mb-1">Tu correo electrónico</label>
-                  <input type="email" className="w-full px-4 py-2 border rounded-md bg-background" placeholder="tunombre@empresa.com" />
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full px-4 py-2 border rounded-md bg-background"
+                    placeholder="tunombre@empresa.com"
+                  />
                 </div>
                 
-                <Button className="w-full">Solicitar consulta</Button>
+                <Button type="submit" className="w-full">Solicitar consulta</Button>
                 
                 <p className="text-xs text-muted-foreground text-center mt-2">
                   Al enviar, aceptas nuestra política de privacidad. No compartimos tus datos con terceros.
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>

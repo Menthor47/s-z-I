@@ -16,6 +16,8 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { BUSINESS_INFO, SERVICE_RATES, QUOTE_CALCULATION, SPECIAL_REQUIREMENTS } from "@/lib/constants.es";
+import { loadAttribution } from "@/lib/attribution";
+import { trackQuoteSubmitted } from "@/lib/tracking";
 
 const steps = [
   "Servicio",
@@ -24,10 +26,19 @@ const steps = [
   "Contacto",
 ];
 
+interface InitialQuoteState {
+  readonly serviceType?: string;
+  readonly origin?: string;
+  readonly destination?: string;
+  readonly weight?: string;
+  readonly email?: string;
+  readonly plannedDate?: string;
+}
+
 const GetQuoteEs = () => {
   const { toast } = useToast();
   const location = useLocation();
-  const initialData = location.state || {};
+  const initialData = (location.state || {}) as InitialQuoteState;
   
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -38,7 +49,7 @@ const GetQuoteEs = () => {
     serviceType: initialData.serviceType || "",
     origin: initialData.origin || "",
     destination: initialData.destination || "",
-    pickupDate: "",
+    pickupDate: initialData.plannedDate || "",
     deliveryDate: "",
     weight: initialData.weight || "",
     length: "",
@@ -47,7 +58,7 @@ const GetQuoteEs = () => {
     specialRequirements: [] as string[],
     contactName: "",
     companyName: "",
-    email: "",
+    email: initialData.email || "",
     phone: "",
   });
 
@@ -153,6 +164,7 @@ const GetQuoteEs = () => {
     }
 
     setLoading(true);
+    const attribution = loadAttribution();
     try {
       const insertData = {
         service_type: formData.serviceType,
@@ -170,6 +182,9 @@ const GetQuoteEs = () => {
         email: formData.email,
         phone: formData.phone,
         estimated_cost: estimatedCost ?? null,
+        notes: attribution
+          ? `Attribution: ${JSON.stringify(attribution)}`.slice(0, 1000)
+          : null,
       };
 
       console.log("Submitting quote data:", insertData);
@@ -193,16 +208,22 @@ const GetQuoteEs = () => {
 
       console.log("Quote successfully inserted:", data[0]);
 
+      trackQuoteSubmitted({
+        locale: "es",
+        serviceType: formData.serviceType,
+        attribution,
+      });
+
       toast({
         title: "¡Solicitud enviada!",
         description: "Nuestro equipo te contactará en menos de 2 horas.",
       });
       setStep(5);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Quote submission error:", error);
       toast({
         title: "Error",
-        description: error?.message || "No pudimos registrar tu solicitud. Inténtalo más tarde.",
+        description: error instanceof Error ? error.message : "No pudimos registrar tu solicitud. Inténtalo más tarde.",
         variant: "destructive",
       });
     } finally {

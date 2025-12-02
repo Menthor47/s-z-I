@@ -1,3 +1,4 @@
+import type { FormEvent } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,9 +7,27 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { Truck, MapPin, Package, Clock, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Relocation = () => {
+  const navigate = useNavigate();
+
+  const handleSmartCtaSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const emailElement = form.elements.namedItem("email") as HTMLInputElement | null;
+    const plannedDateElement = form.elements.namedItem("plannedDate") as HTMLInputElement | null;
+    const email = emailElement?.value ?? "";
+    const plannedDate = plannedDateElement?.value ?? "";
+    navigate("/get-quote", {
+      state: {
+        serviceType: "relocation",
+        email,
+        plannedDate,
+      },
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEO 
@@ -182,6 +201,81 @@ const Relocation = () => {
         </div>
       </section>
 
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">Why choose us for your relocation</h2>
+              <p className="text-muted-foreground mb-4">
+                With years of experience in business relocations, we help you plan and execute your move so your teams can
+                get back to work quickly.
+              </p>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Carefully planned moves around your operating hours</li>
+                <li>• Professional crews for office, warehouse, and light industrial moves</li>
+                <li>• Options for weekend, evening, and overnight relocations</li>
+                <li>• Clear communication from planning to final delivery</li>
+              </ul>
+            </div>
+            <div className="bg-muted rounded-lg p-8">
+              <h3 className="text-xl font-semibold mb-4">Request a relocation consultation</h3>
+              <p className="text-muted-foreground mb-6">
+                Tell us a few basics about your move and our team will follow up with a tailored plan and quote.
+              </p>
+              <form onSubmit={handleSmartCtaSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Relocation type</label>
+                  <select
+                    name="relocationType"
+                    className="w-full px-4 py-2 border rounded-md bg-background"
+                  >
+                    <option>Office</option>
+                    <option>Warehouse</option>
+                    <option>Retail</option>
+                    <option>Industrial</option>
+                  </select>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Approximate m²</label>
+                    <input
+                      type="text"
+                      name="approxM2"
+                      className="w-full px-4 py-2 border rounded-md bg-background"
+                      placeholder="e.g., 150 m²"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Target move date</label>
+                    <input
+                      type="text"
+                      name="plannedDate"
+                      className="w-full px-4 py-2 border rounded-md bg-background"
+                      placeholder="Select date"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Your email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full px-4 py-2 border rounded-md bg-background"
+                    placeholder="you@company.com"
+                  />
+                </div>
+                <Button type="submit" className="w-full">
+                  Request consultation
+                </Button>
+                <p className="text-xs text-muted-foreground text-center mt-2">
+                  By submitting, you agree to our privacy policy. We do not share your details with third parties.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-primary text-white">
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Plan Your Move?</h2>
@@ -199,6 +293,28 @@ const Relocation = () => {
                 Contact Our Team
               </Link>
             </Button>
+          </div>
+          <div className="mt-6 text-sm text-white/90 space-y-1">
+            <p>
+              Want to prepare your move in more detail? Read our{" "}
+              <Link
+                to="/resources/moving-to-spain-guide"
+                className="underline-offset-2 hover:underline"
+              >
+                complete guide to moving to Spain
+              </Link>
+              .
+            </p>
+            <p>
+              Planning an office relocation? Check the{" "}
+              <Link
+                to="/resources/office-move-checklist"
+                className="underline-offset-2 hover:underline"
+              >
+                office move checklist
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

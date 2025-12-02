@@ -13,6 +13,8 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { BUSINESS_INFO } from "@/lib/constants.es";
+import { loadAttribution } from "@/lib/attribution";
+import { trackContactSubmitted } from "@/lib/tracking";
 
 const ContactEs = () => {
   const { toast } = useToast();
@@ -32,10 +34,11 @@ const ContactEs = () => {
 
     try {
       contactFormSchemaEs.parse(formData);
-    } catch (error: any) {
-      if (error.errors) {
+    } catch (error: unknown) {
+      if (error instanceof Error && 'errors' in error) {
+        const zodError = error as { errors: Array<{ path: string[]; message: string }> };
         const newErrors: Record<string, string> = {};
-        error.errors.forEach((err: any) => {
+        zodError.errors.forEach((err) => {
           newErrors[err.path[0]] = err.message;
         });
         setErrors(newErrors);
@@ -49,10 +52,16 @@ const ContactEs = () => {
     }
 
     setLoading(true);
+    const attribution = loadAttribution();
 
     try {
       const { error } = await supabase.from("contact_submissions").insert([formData]);
       if (error) throw error;
+
+      trackContactSubmitted({
+        locale: "es",
+        attribution,
+      });
 
       toast({
         title: "¡Mensaje enviado!",

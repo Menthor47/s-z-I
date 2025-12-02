@@ -184,6 +184,18 @@ const Index = () => {
                 </Link>
               </Button>
             </div>
+            <div className="mt-6 text-sm text-muted-foreground">
+              <span>
+                Moving from another country? Read our{" "}
+                <Link
+                  to="/resources/moving-to-spain-guide"
+                  className="text-primary underline-offset-2 hover:underline"
+                >
+                  guide to moving to Spain
+                </Link>
+                .
+              </span>
+            </div>
           </div>
         </div>
       </section>

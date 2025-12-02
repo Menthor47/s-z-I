@@ -12,6 +12,13 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 
+interface TimelineEvent {
+  status: string;
+  title: string;
+  timestamp: string;
+  description?: string;
+}
+
 interface Shipment {
   id: string;
   tracking_number: string;
@@ -22,7 +29,7 @@ interface Shipment {
   weight: number;
   service_type: string;
   estimated_delivery: string | null;
-  timeline: any[];
+  timeline: TimelineEvent[];
   created_at: string;
 }
 
@@ -50,10 +57,23 @@ const TrackShipment = () => {
         (payload) => {
           console.log('Shipment update:', payload);
           if (payload.new) {
-            const newShipment = payload.new as any;
+            const newData = payload.new as Record<string, unknown>;
+            const rawTimeline = newData.timeline;
+            const timeline: TimelineEvent[] = Array.isArray(rawTimeline)
+              ? (rawTimeline as unknown as TimelineEvent[])
+              : [];
             setShipment({
-              ...newShipment,
-              timeline: Array.isArray(newShipment.timeline) ? newShipment.timeline : []
+              id: newData.id as string,
+              tracking_number: newData.tracking_number as string,
+              status: newData.status as string,
+              origin: newData.origin as string,
+              destination: newData.destination as string,
+              current_location: newData.current_location as string | null,
+              weight: newData.weight as number,
+              service_type: newData.service_type as string,
+              estimated_delivery: newData.estimated_delivery as string | null,
+              created_at: newData.created_at as string,
+              timeline,
             });
           }
         }
@@ -106,10 +126,22 @@ const TrackShipment = () => {
       if (error) throw error;
 
       if (data) {
-        const shipmentData = data as any;
+        const rawTimeline = data.timeline;
+        const timeline: TimelineEvent[] = Array.isArray(rawTimeline) 
+          ? (rawTimeline as unknown as TimelineEvent[]) 
+          : [];
         setShipment({
-          ...shipmentData,
-          timeline: Array.isArray(shipmentData.timeline) ? shipmentData.timeline : []
+          id: data.id,
+          tracking_number: data.tracking_number,
+          status: data.status,
+          origin: data.origin,
+          destination: data.destination,
+          current_location: data.current_location,
+          weight: data.weight,
+          service_type: data.service_type,
+          estimated_delivery: data.estimated_delivery,
+          created_at: data.created_at,
+          timeline,
         });
         toast({
           title: "Shipment Found!",
@@ -237,7 +269,7 @@ const TrackShipment = () => {
                     {/* Timeline */}
                     <div className="space-y-4">
                       {shipment.timeline && shipment.timeline.length > 0 ? (
-                        shipment.timeline.map((event: any, index: number) => (
+                        shipment.timeline.map((event: TimelineEvent, index: number) => (
                           <div key={index} className="flex items-start space-x-4">
                             <div className={`flex-shrink-0 w-10 h-10 rounded-full ${getStatusColor(event.status)} flex items-center justify-center`}>
                               {getStatusIcon(event.status)}

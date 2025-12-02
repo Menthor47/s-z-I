@@ -35,7 +35,7 @@ const IndexEs = () => {
       icon: Warehouse,
       title: "Servicios de reubicación",
       description: "Traslados empresariales y de oficinas con el máximo cuidado",
-      priceRange: "800 € por proyecto de reubicación",
+      priceRange: "500 € por proyecto de reubicación",
     },
     {
       icon: Ship,
@@ -183,6 +183,18 @@ const IndexEs = () => {
                   Hablar con un especialista
                 </Link>
               </Button>
+            </div>
+            <div className="mt-6 text-sm text-muted-foreground">
+              <span>
+                ¿Te mudas desde otro país? Lee nuestra{" "}
+                <Link
+                  to="/es/resources/guia-mudarse-a-espana"
+                  className="text-primary underline-offset-2 hover:underline"
+                >
+                  guía para mudarse a España
+                </Link>
+                .
+              </span>
             </div>
           </div>
         </div>
