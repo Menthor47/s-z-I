@@ -163,6 +163,22 @@ export const ServicesFaqSchema = () => {
           "@type": "Answer",
           "text": "For an accurate relocation quote, we usually ask for current and new addresses, preferred move dates, approximate size of the premises, any heavy or specialist equipment, access details, and whether you need packing or unpacking services."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How much notice do you need to schedule a relocation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For business relocations we recommend contacting us at least 2-3 weeks in advance so we can plan vehicles, crews, and any site surveys. If you have an urgent move, contact us and we will confirm the earliest practical dates based on your locations and scope."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you support relocations between cities like Madrid and Málaga ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We regularly manage relocations within Spain, including popular corridors such as Madrid-Málaga and other city-to-city moves. We coordinate local access at both ends and, where required, can combine relocation services with ongoing distribution or warehousing."
+        }
       }
     ]
   };
@@ -233,6 +249,38 @@ export const ServicesFaqSchema = () => {
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Para un presupuesto de reubicación preciso, solicitamos direcciones actuales y nuevas, fechas preferidas, tamaño aproximado de las instalaciones, equipos pesados o especiales, detalles de acceso y si necesitas servicios de embalaje."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Con cuánta antelación debo reservar una reubicación?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para proyectos de reubicación empresarial recomendamos contactarnos al menos con 2-3 semanas de antelación para poder planificar vehículos, equipos y posibles visitas técnicas. Si tienes una mudanza urgente, consúltanos y te indicaremos las primeras fechas viables según el alcance y ubicaciones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden gestionar reubicaciones entre ciudades como Madrid y Málaga ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Gestionamos con frecuencia reubicaciones dentro de España, incluyendo corredores habituales como Madrid-Málaga y otros traslados entre ciudades. Coordinamos los accesos locales en origen y destino y, cuando es necesario, combinamos la reubicación con servicios de distribución o almacenaje."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué información necesitan para proporcionar un presupuesto de reubicación?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para proporcionar un presupuesto de reubicación preciso, necesitamos conocer las direcciones actuales y nuevas, fechas preferidas, tamaño aproximado de las instalaciones, equipos pesados o especiales, detalles de acceso y si necesitas servicios de embalaje."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo dura una reubicación?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La duración de una reubicación puede variar mucho dependiendo del tamaño de la mudanza, la distancia entre ubicaciones y la complejidad de la reubicación. Trabajaremos contigo para crear un plan de reubicación personalizado que se adapte a tus necesidades y cronograma."
         }
       }
     ]

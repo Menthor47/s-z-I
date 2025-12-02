@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Package, Truck, CheckCircle, Clock, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { trackShipmentLookup } from "@/lib/tracking";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -55,7 +56,6 @@ const TrackShipment = () => {
           filter: `tracking_number=eq.${shipment.tracking_number}`
         },
         (payload) => {
-          console.log('Shipment update:', payload);
           if (payload.new) {
             const newData = payload.new as Record<string, unknown>;
             const rawTimeline = newData.timeline;
@@ -100,6 +100,7 @@ const TrackShipment = () => {
     setLoading(true);
     setSearched(true);
     setShipment(null);
+    const via: "tracking_number" | "email" = trackingNumber.includes("@") ? "email" : "tracking_number";
 
     try {
       // Try to find by tracking number first
@@ -143,11 +144,19 @@ const TrackShipment = () => {
           created_at: data.created_at,
           timeline,
         });
+        trackShipmentLookup({
+          result: "found",
+          via,
+        });
         toast({
           title: "Shipment Found!",
           description: "Displaying tracking information.",
         });
       } else {
+        trackShipmentLookup({
+          result: "not_found",
+          via,
+        });
         toast({
           title: "Not Found",
           description: "No shipment found with that tracking number or email.",
@@ -156,6 +165,10 @@ const TrackShipment = () => {
       }
     } catch (error) {
       console.error("Tracking error:", error);
+      trackShipmentLookup({
+        result: "error",
+        via: trackingNumber.includes("@") ? "email" : "tracking_number",
+      });
       toast({
         title: "Error",
         description: "Failed to retrieve shipment. Please try again.",
@@ -198,6 +211,7 @@ const TrackShipment = () => {
         title="Track Your Shipment - Real-Time Updates"
         description="Track your freight shipment in real-time. Get instant updates on location and delivery status."
         keywords="track shipment, freight tracking, cargo tracking, logistics tracking"
+        noIndex
       />
       <Navigation />
       <WhatsAppButton />
@@ -236,8 +250,9 @@ const TrackShipment = () => {
                     value={trackingNumber}
                     onChange={(e) => setTrackingNumber(e.target.value)}
                     className="text-lg"
+                    aria-describedby="track-shipment-help"
                   />
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p id="track-shipment-help" className="text-sm text-muted-foreground mt-2">
                     Enter the tracking number from your confirmation email, or use the email address you provided when booking.
                   </p>
                 </div>

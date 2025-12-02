@@ -133,8 +133,8 @@ export const Navigation = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent>
-              <div className="flex flex-col space-y-4 mt-8">
+            <SheetContent aria-label={isSpanish ? "Menú de navegación" : "Navigation menu"}>
+              <nav className="flex flex-col space-y-4 mt-8" aria-label={isSpanish ? "Navegación principal" : "Main navigation"}>
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
@@ -165,7 +165,7 @@ export const Navigation = () => {
                   <Phone className="h-5 w-5" />
                   <span>{businessInfo.phone}</span>
                 </a>
-              </div>
+              </nav>
             </SheetContent>
           </Sheet>
         </div>

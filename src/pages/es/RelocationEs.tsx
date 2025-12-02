@@ -337,6 +337,26 @@ export const RelocationEs = () => {
               <Link to="/es/contact">Contactar con un asesor</Link>
             </Button>
           </div>
+          <div className="mt-6 text-sm text-white/90 space-y-1">
+            <p>
+              ¿Te mudas en Madrid o Málaga? Descubre más sobre nuestros servicios de{" "}
+              <Link
+                to="/es/relocation/madrid"
+                className="underline-offset-2 hover:underline"
+              >
+                reubicación en Madrid
+              </Link>
+              {" "}
+              y{" "}
+              <Link
+                to="/es/relocation/malaga"
+                className="underline-offset-2 hover:underline"
+              >
+                reubicación en Málaga
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </section>
 

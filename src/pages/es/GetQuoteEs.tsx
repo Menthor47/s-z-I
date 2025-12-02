@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { FooterEs } from "@/components/es/FooterEs";
 import { Button } from "@/components/ui/button";
@@ -16,8 +16,9 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { BUSINESS_INFO, SERVICE_RATES, QUOTE_CALCULATION, SPECIAL_REQUIREMENTS } from "@/lib/constants.es";
-import { loadAttribution } from "@/lib/attribution";
+import { loadAttribution, formatAttributionForNotes } from "@/lib/attribution";
 import { trackQuoteSubmitted } from "@/lib/tracking";
+import { quoteFormSchemaEs, type QuoteFormDataEs } from "@/lib/validations.es";
 
 const steps = [
   "Servicio",
@@ -44,8 +45,9 @@ const GetQuoteEs = () => {
   const [loading, setLoading] = useState(false);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const lastSubmitRef = useRef<number | null>(null);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<QuoteFormDataEs>({
     serviceType: initialData.serviceType || "",
     origin: initialData.origin || "",
     destination: initialData.destination || "",
@@ -82,48 +84,43 @@ const GetQuoteEs = () => {
 
   const validateStep = (currentStep: number): boolean => {
     setErrors({});
-    const newErrors: Record<string, string> = {};
 
+    const result = quoteFormSchemaEs.safeParse(formData);
+    if (result.success) {
+      return true;
+    }
+
+    let stepFields: (keyof QuoteFormDataEs)[] = [];
     switch (currentStep) {
       case 1:
-        if (!formData.serviceType) {
-          newErrors.serviceType = "El tipo de servicio es obligatorio";
-        }
+        stepFields = ["serviceType"];
         break;
       case 2:
-        if (!formData.origin || formData.origin.length < 2) {
-          newErrors.origin = "El origen es obligatorio";
-        }
-        if (!formData.destination || formData.destination.length < 2) {
-          newErrors.destination = "El destino es obligatorio";
-        }
+        stepFields = ["origin", "destination"];
         break;
       case 3:
-        if (!formData.weight) {
-          newErrors.weight = "El peso es obligatorio";
-        } else if (isNaN(Number(formData.weight)) || Number(formData.weight) <= 0) {
-          newErrors.weight = "El peso debe ser un número positivo";
-        }
+        stepFields = ["weight"];
         break;
       case 4:
-        if (!formData.contactName || formData.contactName.length < 2) {
-          newErrors.contactName = "El nombre debe tener al menos 2 caracteres";
-        }
-        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-          newErrors.email = "Correo electrónico no válido";
-        }
-        if (!formData.phone || formData.phone.length < 7) {
-          newErrors.phone = "El teléfono debe tener al menos 7 caracteres";
-        }
+        stepFields = ["contactName", "email", "phone"];
         break;
       default:
-        break;
+        stepFields = [];
+    }
+
+    const newErrors: Record<string, string> = {};
+    for (const issue of result.error.issues) {
+      const field = issue.path[0];
+      if (typeof field === "string" && stepFields.includes(field as keyof QuoteFormDataEs) && !newErrors[field]) {
+        newErrors[field] = issue.message;
+      }
     }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return false;
     }
+
     return true;
   };
 
@@ -154,6 +151,16 @@ const GetQuoteEs = () => {
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
   const handleSubmit = async () => {
+    const now = Date.now();
+    if (lastSubmitRef.current !== null && now - lastSubmitRef.current < 10_000) {
+      toast({
+        title: "Espera un momento",
+        description: "Has enviado una solicitud de presupuesto hace poco. Espera unos segundos antes de intentarlo de nuevo.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!validateStep(4)) {
       toast({
         title: "Error de validación",
@@ -182,19 +189,13 @@ const GetQuoteEs = () => {
         email: formData.email,
         phone: formData.phone,
         estimated_cost: estimatedCost ?? null,
-        notes: attribution
-          ? `Attribution: ${JSON.stringify(attribution)}`.slice(0, 1000)
-          : null,
+        notes: formatAttributionForNotes(attribution),
       };
-
-      console.log("Submitting quote data:", insertData);
 
       const { data, error } = await supabase
         .from("quotes")
         .insert([insertData])
         .select();
-
-      console.log("Supabase response - data:", data, "error:", error);
 
       if (error) {
         console.error("Supabase error details:", error);
@@ -205,8 +206,6 @@ const GetQuoteEs = () => {
         console.error("No data returned from insert - RLS policy may be blocking");
         throw new Error("Insert succeeded but no data returned");
       }
-
-      console.log("Quote successfully inserted:", data[0]);
 
       trackQuoteSubmitted({
         locale: "es",
@@ -219,6 +218,7 @@ const GetQuoteEs = () => {
         description: "Nuestro equipo te contactará en menos de 2 horas.",
       });
       setStep(5);
+      lastSubmitRef.current = now;
     } catch (error: unknown) {
       console.error("Quote submission error:", error);
       toast({
@@ -279,8 +279,14 @@ const GetQuoteEs = () => {
                   placeholder="Ej. Madrid"
                   value={formData.origin}
                   onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
+                  aria-invalid={Boolean(errors.origin)}
+                  aria-describedby={errors.origin ? "quote-es-origin-error" : undefined}
                 />
-                {errors.origin && <p className="text-sm text-destructive mt-1">{errors.origin}</p>}
+                {errors.origin && (
+                  <p id="quote-es-origin-error" className="text-sm text-destructive mt-1">
+                    {errors.origin}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Ciudad / punto de destino</label>
@@ -288,8 +294,14 @@ const GetQuoteEs = () => {
                   placeholder="Ej. París"
                   value={formData.destination}
                   onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
+                  aria-invalid={Boolean(errors.destination)}
+                  aria-describedby={errors.destination ? "quote-es-destination-error" : undefined}
                 />
-                {errors.destination && <p className="text-sm text-destructive mt-1">{errors.destination}</p>}
+                {errors.destination && (
+                  <p id="quote-es-destination-error" className="text-sm text-destructive mt-1">
+                    {errors.destination}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Fecha de recogida</label>
@@ -325,8 +337,14 @@ const GetQuoteEs = () => {
                   placeholder="1000"
                   value={formData.weight}
                   onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                  aria-invalid={Boolean(errors.weight)}
+                  aria-describedby={errors.weight ? "quote-es-weight-error" : undefined}
                 />
-                {errors.weight && <p className="text-sm text-destructive mt-1">{errors.weight}</p>}
+                {errors.weight && (
+                  <p id="quote-es-weight-error" className="text-sm text-destructive mt-1">
+                    {errors.weight}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Largo (cm)</label>
@@ -401,8 +419,14 @@ const GetQuoteEs = () => {
                   placeholder="Nombre y apellidos"
                   value={formData.contactName}
                   onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                  aria-invalid={Boolean(errors.contactName)}
+                  aria-describedby={errors.contactName ? "quote-es-contact-name-error" : undefined}
                 />
-                {errors.contactName && <p className="text-sm text-destructive mt-1">{errors.contactName}</p>}
+                {errors.contactName && (
+                  <p id="quote-es-contact-name-error" className="text-sm text-destructive mt-1">
+                    {errors.contactName}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Empresa (opcional)</label>
@@ -419,8 +443,14 @@ const GetQuoteEs = () => {
                   placeholder="tu@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "quote-es-email-error" : undefined}
                 />
-                {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                {errors.email && (
+                  <p id="quote-es-email-error" className="text-sm text-destructive mt-1">
+                    {errors.email}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Teléfono</label>
@@ -428,8 +458,14 @@ const GetQuoteEs = () => {
                   placeholder="+34 600 000 000"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? "quote-es-phone-error" : undefined}
                 />
-                {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone}</p>}
+                {errors.phone && (
+                  <p id="quote-es-phone-error" className="text-sm text-destructive mt-1">
+                    {errors.phone}
+                  </p>
+                )}
               </div>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,80 +5,28 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
 import { contactFormSchema } from "@/lib/validations";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
-import { loadAttribution } from "@/lib/attribution";
-import { trackContactSubmitted } from "@/lib/tracking";
+import { BUSINESS_INFO } from "@/lib/constants";
+import { useContactForm } from "@/hooks/useContactForm";
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: "",
+  const { formData, errors, loading, handleChange, handleSubmit } = useContactForm({
+    locale: "en",
+    schema: contactFormSchema,
+    copy: {
+      validationErrorTitle: "Validation Error",
+      validationErrorDescription: "Please check all fields and try again.",
+      successTitle: "Message Sent!",
+      successDescription: "We'll get back to you within 24 hours.",
+      errorTitle: "Error",
+      errorDescription: "Failed to send message. Please try again.",
+      rateLimitTitle: "Please wait",
+      rateLimitDescription: "You recently sent a message. Please wait a few seconds before trying again.",
+    },
   });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrors({});
-    
-    try {
-      contactFormSchema.parse(formData);
-    } catch (error: unknown) {
-      if (error instanceof Error && 'errors' in error) {
-        const zodError = error as { errors: Array<{ path: string[]; message: string }> };
-        const newErrors: Record<string, string> = {};
-        zodError.errors.forEach((err) => {
-          newErrors[err.path[0]] = err.message;
-        });
-        setErrors(newErrors);
-        toast({
-          title: "Validation Error",
-          description: "Please check all fields and try again.",
-          variant: "destructive",
-        });
-        return;
-      }
-    }
-
-    setLoading(true);
-    const attribution = loadAttribution();
-    
-    try {
-      const { error } = await supabase.from("contact_submissions").insert([formData]);
-      
-      if (error) throw error;
-
-      trackContactSubmitted({
-        locale: "en",
-        attribution,
-      });
-
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      
-      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-    } catch (error) {
-      console.error("Contact form error:", error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -121,9 +68,16 @@ const Contact = () => {
                       required
                       placeholder="John Doe"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => handleChange("name", e.target.value)}
+
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "contact-name-error" : undefined}
                     />
-                    {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
+                    {errors.name && (
+                      <p id="contact-name-error" className="text-sm text-destructive mt-1">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">Email *</label>
@@ -132,9 +86,16 @@ const Contact = () => {
                       type="email"
                       placeholder="john@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) => handleChange("email", e.target.value)}
+
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                     />
-                    {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                    {errors.email && (
+                      <p id="contact-email-error" className="text-sm text-destructive mt-1">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">Phone</label>
@@ -142,16 +103,24 @@ const Contact = () => {
                       type="tel"
                       placeholder="+34 600 123 456"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => handleChange("phone", e.target.value)}
+
+                      aria-invalid={Boolean(errors.phone)}
+                      aria-describedby={errors.phone ? "contact-phone-error" : undefined}
                     />
-                    {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone}</p>}
+                    {errors.phone && (
+                      <p id="contact-phone-error" className="text-sm text-destructive mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">Company</label>
                     <Input
                       placeholder="Your Company Ltd"
                       value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      onChange={(e) => handleChange("company", e.target.value)}
+
                     />
                   </div>
                   <div>
@@ -161,9 +130,16 @@ const Contact = () => {
                       placeholder="Tell us about your logistics needs..."
                       rows={5}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => handleChange("message", e.target.value)}
+
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? "contact-message-error" : undefined}
                     />
-                    {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
+                    {errors.message && (
+                      <p id="contact-message-error" className="text-sm text-destructive mt-1">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
                   <Button type="submit" size="lg" className="w-full" disabled={loading}>
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -182,8 +158,8 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-2">Head Office</h3>
                       <p className="text-muted-foreground">
-                        Málaga<br />
-                        Spain
+                        {BUSINESS_INFO.city}<br />
+                        {BUSINESS_INFO.country}
                       </p>
                     </div>
                   </div>
@@ -197,7 +173,12 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-2">Phone</h3>
                       <p className="text-muted-foreground">
-                        <a href="tel:+34684482440" className="text-primary hover:underline">+34 684 48 24 40</a>
+                        <a
+                          href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                          className="text-primary hover:underline"
+                        >
+                          {BUSINESS_INFO.phone}
+                        </a>
                       </p>
                     </div>
                   </div>
@@ -211,7 +192,12 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-2">Email</h3>
                       <p className="text-muted-foreground">
-                        <a href="mailto:esoffice@szitrans.com" className="text-primary hover:underline">esoffice@szitrans.com</a>
+                        <a
+                          href={`mailto:${BUSINESS_INFO.email}`}
+                          className="text-primary hover:underline"
+                        >
+                          {BUSINESS_INFO.email}
+                        </a>
                       </p>
                     </div>
                   </div>

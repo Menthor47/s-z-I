@@ -78,3 +78,37 @@ export const saveAttribution = (source: AttributionSource): void => {
   };
   window.localStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(merged));
 };
+
+export const formatAttributionForNotes = (attribution: AttributionData | null): string | null => {
+  if (!attribution) {
+    return null;
+  }
+
+  const {
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    refCode,
+    partner,
+    landingPath,
+    firstTouchAt,
+    lastTouchAt,
+  } = attribution;
+
+  const summary = {
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    refCode,
+    partner,
+    landingPath,
+    firstTouchAt,
+    lastTouchAt,
+  };
+
+  return `Attribution: ${JSON.stringify(summary)}`;
+};

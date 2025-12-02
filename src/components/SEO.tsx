@@ -10,6 +10,7 @@ interface SEOProps {
   keywords?: string;
   ogImage?: string;
   ogType?: string;
+  noIndex?: boolean;
 }
 
 export const SEO = ({
@@ -18,6 +19,7 @@ export const SEO = ({
   keywords: propKeywords,
   ogImage = "/hero-truck.jpg",
   ogType = "website",
+  noIndex = false,
 }: SEOProps) => {
   const { isSpanish, locale } = useLocale();
   const location = useLocation();
@@ -44,6 +46,7 @@ export const SEO = ({
     <Helmet>
       {/* Language */}
       <html lang={locale} />
+      {noIndex && <meta name="robots" content="noindex, nofollow" />}
       
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>

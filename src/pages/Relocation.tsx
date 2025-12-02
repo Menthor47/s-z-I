@@ -315,6 +315,24 @@ const Relocation = () => {
               </Link>
               .
             </p>
+            <p>
+              Planning a move in Madrid or Málaga? Learn more about our{" "}
+              <Link
+                to="/relocation/madrid"
+                className="underline-offset-2 hover:underline"
+              >
+                Madrid relocation services
+              </Link>
+              {" "}
+              and{" "}
+              <Link
+                to="/relocation/malaga"
+                className="underline-offset-2 hover:underline"
+              >
+                Málaga relocation services
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

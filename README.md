@@ -1,73 +1,96 @@
-# Welcome to your Lovable project
+# S&Z Trading International - Freight & Logistics Website
 
-## Project info
+Professional freight and logistics website for **S&Z TRADING INTERNATIONAL S.C.A.**
 
-**URL**: https://lovable.dev/projects/04c5f4a6-d8a8-4ba4-b995-5722d7f66b88
+## Tech Stack
 
-## How can I edit this code?
+- **Framework**: React 18 + TypeScript
+- **Build**: Vite
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Backend**: Supabase (PostgreSQL + Auth + Realtime)
+- **Validation**: Zod
+- **Data Fetching**: TanStack Query
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/04c5f4a6-d8a8-4ba4-b995-5722d7f66b88) and start prompting.
+- Node.js 18+
+- npm (or another Node package manager)
 
-Changes made via Lovable will be committed automatically to this repo.
+### Setup
 
-**Use your preferred IDE**
+1. Clone the repository
+2. Copy environment variables:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+   ```bash
+   cp .env.example .env
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3. Fill in your Supabase credentials in `.env`
+4. Install dependencies:
 
-Follow these steps:
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+5. Start development server:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+   ```bash
+   npm run dev
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Environment Variables
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+Defined in `.env` (see `.env.example`):
+
+| Variable                        | Description                     |
+|---------------------------------|---------------------------------|
+| `VITE_SUPABASE_URL`            | Your Supabase project URL       |
+| `VITE_SUPABASE_PUBLISHABLE_KEY`| Supabase anon/public key        |
+| `VITE_SUPABASE_PROJECT_ID`     | Supabase project ID             |
+
+## Scripts
+
+- `npm run dev` – start development server
+- `npm run build` – production build
+- `npm run preview` – preview production build
+- `npm run lint` – run ESLint
+- `npm run test` – run Vitest in watch mode
+- `npm run test:run` – run Vitest once (CI-friendly)
+
+## Project Structure
+
+```text
+src/
+├── App.tsx              # App shell and routing
+├── main.tsx             # Vite entry
+├── components/          # Reusable UI components
+│   ├── ui/              # shadcn/ui primitives
+│   └── es/              # Spanish-specific components
+├── hooks/               # Custom React hooks
+├── integrations/        # Supabase client & types
+├── lib/                 # Constants, validation, tracking, attribution
+├── pages/               # Route pages (EN)
+│   └── es/              # Route pages (ES)
+└── test/                # Test setup
 ```
 
-**Edit a file directly in GitHub**
+## Key Features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Multi-step quote form with Zod validation and Supabase persistence
+- Bilingual pages (English/Spanish) with mirrored content
+- Business relocation landing pages (city-specific for Madrid and Málaga)
+- Shipment tracking connected to Supabase `shipments` table
+- Attribution tracking (UTM, referrer) stored with quotes
+- JSON-LD structured data for LocalBusiness and FAQ (SEO)
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Build for production:
 
-## What technologies are used for this project?
+```bash
+npm run build
+```
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/04c5f4a6-d8a8-4ba4-b995-5722d7f66b88) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The static output is generated in the `dist/` directory and can be deployed to any static hosting provider (Netlify, Vercel, Cloudflare Pages, etc.).

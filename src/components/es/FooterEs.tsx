@@ -27,15 +27,33 @@ export const FooterEs = () => {
               {businessInfo.tagline} en {businessInfo.country} y Europa desde {businessInfo.foundedYear}.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
-              </a>
+              {businessInfo.social.facebook !== "#" && (
+                <a
+                  href={businessInfo.social.facebook}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+              )}
+              {businessInfo.social.linkedin !== "#" && (
+                <a
+                  href={businessInfo.social.linkedin}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              )}
+              {businessInfo.social.twitter !== "#" && (
+                <a
+                  href={businessInfo.social.twitter}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="h-5 w-5" />
+                </a>
+              )}
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -16,8 +16,9 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { BUSINESS_INFO, SERVICE_RATES, QUOTE_CALCULATION, SPECIAL_REQUIREMENTS } from "@/lib/constants";
-import { loadAttribution } from "@/lib/attribution";
+import { loadAttribution, formatAttributionForNotes } from "@/lib/attribution";
 import { trackQuoteSubmitted } from "@/lib/tracking";
+import { quoteFormSchema, type QuoteFormData } from "@/lib/validations";
 
 interface InitialQuoteState {
   readonly serviceType?: string;
@@ -37,8 +38,9 @@ const GetQuote = () => {
   const [loading, setLoading] = useState(false);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const lastSubmitRef = useRef<number | null>(null);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<QuoteFormData>({
     serviceType: initialData.serviceType || "",
     origin: initialData.origin || "",
     destination: initialData.destination || "",
@@ -75,48 +77,43 @@ const GetQuote = () => {
 
   const validateStep = (currentStep: number): boolean => {
     setErrors({});
-    const newErrors: Record<string, string> = {};
 
+    const result = quoteFormSchema.safeParse(formData);
+    if (result.success) {
+      return true;
+    }
+
+    let stepFields: (keyof QuoteFormData)[] = [];
     switch (currentStep) {
       case 1:
-        if (!formData.serviceType) {
-          newErrors.serviceType = "Service type is required";
-        }
+        stepFields = ["serviceType"];
         break;
       case 2:
-        if (!formData.origin || formData.origin.length < 2) {
-          newErrors.origin = "Origin is required";
-        }
-        if (!formData.destination || formData.destination.length < 2) {
-          newErrors.destination = "Destination is required";
-        }
+        stepFields = ["origin", "destination"];
         break;
       case 3:
-        if (!formData.weight) {
-          newErrors.weight = "Weight is required";
-        } else if (isNaN(Number(formData.weight)) || Number(formData.weight) <= 0) {
-          newErrors.weight = "Weight must be a positive number";
-        }
+        stepFields = ["weight"];
         break;
       case 4:
-        if (!formData.contactName || formData.contactName.length < 2) {
-          newErrors.contactName = "Name must be at least 2 characters";
-        }
-        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-          newErrors.email = "Valid email is required";
-        }
-        if (!formData.phone || formData.phone.length < 7) {
-          newErrors.phone = "Phone number must be at least 7 characters";
-        }
+        stepFields = ["contactName", "email", "phone"];
         break;
       default:
-        break;
+        stepFields = [];
+    }
+
+    const newErrors: Record<string, string> = {};
+    for (const issue of result.error.issues) {
+      const field = issue.path[0];
+      if (typeof field === "string" && stepFields.includes(field as keyof QuoteFormData) && !newErrors[field]) {
+        newErrors[field] = issue.message;
+      }
     }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return false;
     }
+
     return true;
   };
 
@@ -132,6 +129,16 @@ const GetQuote = () => {
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
   const handleSubmit = async () => {
+    const now = Date.now();
+    if (lastSubmitRef.current !== null && now - lastSubmitRef.current < 10_000) {
+      toast({
+        title: "Please wait",
+        description: "You recently submitted a quote request. Please wait a few seconds before trying again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!validateStep(4)) {
       toast({
         title: "Validation Error",
@@ -160,19 +167,13 @@ const GetQuote = () => {
         email: formData.email,
         phone: formData.phone,
         estimated_cost: estimatedCost ?? null,
-        notes: attribution
-          ? `Attribution: ${JSON.stringify(attribution)}`.slice(0, 1000)
-          : null,
+        notes: formatAttributionForNotes(attribution),
       };
-
-      console.log("Submitting quote data:", insertData);
 
       const { data, error } = await supabase
         .from("quotes")
         .insert([insertData])
         .select();
-
-      console.log("Supabase response - data:", data, "error:", error);
 
       if (error) {
         console.error("Supabase error details:", error);
@@ -180,11 +181,8 @@ const GetQuote = () => {
       }
 
       if (!data || data.length === 0) {
-        console.error("No data returned from insert - RLS policy may be blocking");
         throw new Error("Insert succeeded but no data returned");
       }
-
-      console.log("Quote successfully inserted:", data[0]);
 
       trackQuoteSubmitted({
         locale: "en",
@@ -198,6 +196,7 @@ const GetQuote = () => {
       });
       
       setStep(5);
+      lastSubmitRef.current = now;
     } catch (error: unknown) {
       console.error("Quote submission error:", error);
       toast({
@@ -249,7 +248,7 @@ const GetQuote = () => {
             {errors.serviceType && <p className="text-sm text-destructive mt-4">{errors.serviceType}</p>}
           </div>
         );
-      
+
       case 2:
         return (
           <div className="space-y-6">
@@ -264,8 +263,14 @@ const GetQuote = () => {
                   placeholder="e.g., Madrid"
                   value={formData.origin}
                   onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
+                  aria-invalid={Boolean(errors.origin)}
+                  aria-describedby={errors.origin ? "quote-origin-error" : undefined}
                 />
-                {errors.origin && <p className="text-sm text-destructive mt-1">{errors.origin}</p>}
+                {errors.origin && (
+                  <p id="quote-origin-error" className="text-sm text-destructive mt-1">
+                    {errors.origin}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Destination City/Location</label>
@@ -273,9 +278,16 @@ const GetQuote = () => {
                   placeholder="e.g., Paris"
                   value={formData.destination}
                   onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
+                  aria-invalid={Boolean(errors.destination)}
+                  aria-describedby={errors.destination ? "quote-destination-error" : undefined}
                 />
-                {errors.destination && <p className="text-sm text-destructive mt-1">{errors.destination}</p>}
+                {errors.destination && (
+                  <p id="quote-destination-error" className="text-sm text-destructive mt-1">
+                    {errors.destination}
+                  </p>
+                )}
               </div>
+
               <div>
                 <label className="text-sm font-medium mb-2 block">Pickup Date</label>
                 <Input
@@ -295,7 +307,7 @@ const GetQuote = () => {
             </div>
           </div>
         );
-      
+
       case 3:
         return (
           <div className="space-y-6">
@@ -311,9 +323,16 @@ const GetQuote = () => {
                   placeholder="1000"
                   value={formData.weight}
                   onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                  aria-invalid={Boolean(errors.weight)}
+                  aria-describedby={errors.weight ? "quote-weight-error" : undefined}
                 />
-                {errors.weight && <p className="text-sm text-destructive mt-1">{errors.weight}</p>}
+                {errors.weight && (
+                  <p id="quote-weight-error" className="text-sm text-destructive mt-1">
+                    {errors.weight}
+                  </p>
+                )}
               </div>
+
               <div>
                 <label className="text-sm font-medium mb-2 block">Length (cm)</label>
                 <Input
@@ -373,7 +392,7 @@ const GetQuote = () => {
             </div>
           </div>
         );
-      
+
       case 4:
         return (
           <div className="space-y-6">
@@ -388,9 +407,16 @@ const GetQuote = () => {
                   placeholder="John Doe"
                   value={formData.contactName}
                   onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                  aria-invalid={Boolean(errors.contactName)}
+                  aria-describedby={errors.contactName ? "quote-contact-name-error" : undefined}
                 />
-                {errors.contactName && <p className="text-sm text-destructive mt-1">{errors.contactName}</p>}
+                {errors.contactName && (
+                  <p id="quote-contact-name-error" className="text-sm text-destructive mt-1">
+                    {errors.contactName}
+                  </p>
+                )}
               </div>
+
               <div>
                 <label className="text-sm font-medium mb-2 block">Company Name</label>
                 <Input
@@ -406,8 +432,14 @@ const GetQuote = () => {
                   placeholder="john@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "quote-email-error" : undefined}
                 />
-                {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                {errors.email && (
+                  <p id="quote-email-error" className="text-sm text-destructive mt-1">
+                    {errors.email}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-sm font-medium mb-2 block">Phone Number *</label>
@@ -416,13 +448,19 @@ const GetQuote = () => {
                   placeholder="+34 600 123 456"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? "quote-phone-error" : undefined}
                 />
-                {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone}</p>}
+                {errors.phone && (
+                  <p id="quote-phone-error" className="text-sm text-destructive mt-1">
+                    {errors.phone}
+                  </p>
+                )}
               </div>
             </div>
           </div>
         );
-      
+
       case 5:
         return (
           <div className="text-center space-y-6 py-8">
@@ -454,7 +492,7 @@ const GetQuote = () => {
             </div>
           </div>
         );
-      
+
       default:
         return null;
     }

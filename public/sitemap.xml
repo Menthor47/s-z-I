@@ -116,11 +116,5 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Track (English only) -->
-  <url>
-    <loc>https://szitrans.com/track</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
+  
 </urlset>
