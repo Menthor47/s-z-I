@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { ServiceSchema } from "@/components/StructuredData";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

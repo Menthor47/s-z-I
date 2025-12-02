@@ -167,8 +167,11 @@ const GetQuote = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       console.log("Quote successfully inserted:", data[0]);
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       trackQuoteSubmitted({

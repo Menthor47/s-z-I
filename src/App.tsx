@@ -14,7 +14,10 @@ import Contact from "./pages/Contact";
 import Relocation from "./pages/Relocation";
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import RelocationCity from "./pages/RelocationCity";
@@ -41,7 +44,10 @@ const routes = [
   { path: "/contact", element: <Contact />, spanishElement: <ContactEs /> },
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   { path: "/relocation/:citySlug", element: <RelocationCity />, spanishElement: <RelocationCityEs /> },
