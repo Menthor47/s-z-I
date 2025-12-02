@@ -25,11 +25,11 @@ export const BUSINESS_INFO = {
   // Company Info
   foundedYear: 2022,
   
-  // Social Media (add when available)
+  // Social Media
   social: {
-    facebook: "#",
-    linkedin: "#",
-    twitter: "#",
+    facebook: "https://www.facebook.com/61584540810577/",
+    linkedin: "https://www.linkedin.com/company/szitrading/",
+    tiktok: "https://www.tiktok.com/@szitrading",
   },
   
   // Business Hours

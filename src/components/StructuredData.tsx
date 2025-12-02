@@ -248,3 +248,119 @@ export const ServicesFaqSchema = () => {
     </Helmet>
   );
 };
+
+interface ArticleSchemaProps {
+  title: string;
+  description: string;
+  datePublished?: string;
+  dateModified?: string;
+  slug: string;
+}
+
+export const ArticleSchema = ({ title, description, datePublished = "2024-01-15", dateModified, slug }: ArticleSchemaProps) => {
+  const { isSpanish } = useLocale();
+  const businessInfo = isSpanish ? BUSINESS_INFO_ES : BUSINESS_INFO_EN;
+  const baseUrl = isSpanish ? "https://szitrans.com/es/resources" : "https://szitrans.com/resources";
+  
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": "https://szitrans.com/hero-truck.jpg",
+    "datePublished": datePublished,
+    "dateModified": dateModified || datePublished,
+    "author": {
+      "@type": "Organization",
+      "name": businessInfo.name,
+      "url": "https://szitrans.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": businessInfo.name,
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://szitrans.com/szi-group-logo.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/${slug}`
+    }
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};
+
+export const ContactPageSchema = () => {
+  const { isSpanish } = useLocale();
+  const businessInfo = isSpanish ? BUSINESS_INFO_ES : BUSINESS_INFO_EN;
+  
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": isSpanish ? "Contacto - S&Z Trading International" : "Contact Us - S&Z Trading International",
+    "description": isSpanish 
+      ? "Contacta con S&Z Trading para cualquier necesidad logística."
+      : "Get in touch with S&Z Trading International for all your freight and logistics needs.",
+    "url": isSpanish ? "https://szitrans.com/es/contact" : "https://szitrans.com/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": businessInfo.name,
+      "telephone": businessInfo.phone,
+      "email": businessInfo.email,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": businessInfo.city,
+        "addressCountry": businessInfo.countryCode
+      }
+    }
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};
+
+interface ServiceSchemaProps {
+  serviceName: string;
+  serviceDescription: string;
+  areaServed?: string;
+}
+
+export const ServiceSchema = ({ serviceName, serviceDescription, areaServed = "Spain, Europe" }: ServiceSchemaProps) => {
+  const { isSpanish } = useLocale();
+  const businessInfo = isSpanish ? BUSINESS_INFO_ES : BUSINESS_INFO_EN;
+  
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": serviceName,
+    "description": serviceDescription,
+    "provider": {
+      "@type": "Organization",
+      "name": businessInfo.name,
+      "url": "https://szitrans.com"
+    },
+    "areaServed": areaServed,
+    "serviceType": isSpanish ? "Servicios de logística y transporte" : "Logistics and Transport Services"
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -172,14 +172,10 @@ const GetQuoteEs = () => {
         estimated_cost: estimatedCost ?? null,
       };
 
-      console.log("Submitting quote data:", insertData);
-
       const { data, error } = await supabase
         .from("quotes")
         .insert([insertData])
         .select();
-
-      console.log("Supabase response - data:", data, "error:", error);
 
       if (error) {
         console.error("Supabase error details:", error);
@@ -191,7 +187,15 @@ const GetQuoteEs = () => {
         throw new Error("Insert succeeded but no data returned");
       }
 
+<<<<<<< Updated upstream
       console.log("Quote successfully inserted:", data[0]);
+=======
+      trackQuoteSubmitted({
+        locale: "es",
+        serviceType: formData.serviceType,
+        attribution,
+      });
+>>>>>>> Stashed changes
 
       toast({
         title: "¡Solicitud enviada!",
@@ -530,7 +534,7 @@ const GetQuoteEs = () => {
       </section>
       </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };

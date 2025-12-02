@@ -12,6 +12,12 @@ import { contactFormSchema } from "@/lib/validations";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
+<<<<<<< Updated upstream
+=======
+import { loadAttribution } from "@/lib/attribution";
+import { trackContactSubmitted } from "@/lib/tracking";
+import { ContactPageSchema } from "@/components/StructuredData";
+>>>>>>> Stashed changes
 
 const Contact = () => {
   const { toast } = useToast();
@@ -79,9 +85,11 @@ const Contact = () => {
         description="Get in touch with S&Z Trading International for all your freight and logistics needs. Available 24/7 for emergency support."
         keywords="contact logistics, freight support, S&Z Trading International contact"
       />
+      <ContactPageSchema />
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -229,6 +237,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

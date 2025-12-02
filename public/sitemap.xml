@@ -123,4 +123,152 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Resources -->
+  <url>
+    <loc>https://szitrans.com/resources</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/resources</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Resource Articles -->
+  <url>
+    <loc>https://szitrans.com/resources/moving-to-spain-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources/moving-to-spain-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources/guia-mudarse-a-espana"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources/moving-to-spain-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/resources/guia-mudarse-a-espana</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources/moving-to-spain-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources/guia-mudarse-a-espana"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources/moving-to-spain-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://szitrans.com/resources/office-move-checklist</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources/office-move-checklist"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources/checklist-mudanza-oficina"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources/office-move-checklist"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/resources/checklist-mudanza-oficina</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/resources/office-move-checklist"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/resources/checklist-mudanza-oficina"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/resources/office-move-checklist"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- City-specific Relocation Pages -->
+  <url>
+    <loc>https://szitrans.com/relocation/madrid</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation/madrid"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation/madrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation/madrid"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/relocation/madrid</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation/madrid"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation/madrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation/madrid"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://szitrans.com/relocation/malaga</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation/malaga"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation/malaga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation/malaga"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/relocation/malaga</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation/malaga"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation/malaga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation/malaga"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Partner Landing Pages -->
+  <url>
+    <loc>https://szitrans.com/p/idealista</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/idealista"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/idealista"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/idealista"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/p/idealista</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/idealista"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/idealista"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/idealista"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://szitrans.com/p/expat-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/expat-portal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/expat-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/expat-portal"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/p/expat-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/expat-portal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/expat-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/expat-portal"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://szitrans.com/p/warehouse-network</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/warehouse-network"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/warehouse-network"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/warehouse-network"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.com/es/p/warehouse-network</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/p/warehouse-network"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/p/warehouse-network"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/p/warehouse-network"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

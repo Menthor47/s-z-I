@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
-import { InstantQuoteFormEs } from "@/components/es/InstantQuoteFormEs";
+import { Footer } from "@/components/Footer";
+import { InstantQuoteForm } from "@/components/InstantQuoteForm";
 import { ServiceCard } from "@/components/ServiceCard";
 import { TrustSignalsEs } from "@/components/es/TrustSignalsEs";
 import { TestimonialsEs } from "@/components/es/TestimonialsEs";
@@ -119,7 +119,7 @@ const IndexEs = () => {
             </div>
             
             <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <InstantQuoteFormEs />
+              <InstantQuoteForm />
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@ const IndexEs = () => {
       </section>
       </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };

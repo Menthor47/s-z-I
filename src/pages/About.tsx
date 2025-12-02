@@ -17,6 +17,7 @@ const About = () => {
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
@@ -142,6 +143,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

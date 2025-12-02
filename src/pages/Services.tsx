@@ -114,6 +114,7 @@ const Services = () => {
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
@@ -288,6 +289,7 @@ const Services = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

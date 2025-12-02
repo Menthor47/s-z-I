@@ -1,11 +1,19 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { useLocale } from "@/hooks/useLocale";
+import { useLocation } from "react-router-dom";
+import { trackWhatsAppClick } from "@/lib/tracking";
 
 export const WhatsAppButton = () => {
   const { isSpanish } = useLocale();
+  const location = useLocation();
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick({
+      locale: isSpanish ? "es" : "en",
+      page: location.pathname,
+    });
+    
     const phoneNumber = "34684482440"; // Format: country code + number without +
     const message = isSpanish
       ? "¡Hola! Estoy interesado en sus servicios de logística."

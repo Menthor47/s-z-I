@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from "lucide-react";
-import { BUSINESS_INFO } from "@/lib/constants";
+import { Mail, Phone, MapPin, Facebook, Linkedin } from "lucide-react";
+import { BUSINESS_INFO as BUSINESS_INFO_EN } from "@/lib/constants";
+import { BUSINESS_INFO as BUSINESS_INFO_ES } from "@/lib/constants.es";
+import { useLocale } from "@/hooks/useLocale";
+import { getFooterTranslations } from "@/lib/i18n/footer";
 import sziLogo from "@/assets/szi-group-logo.jpg";
 
 export const Footer = () => {
-  const businessInfo = BUSINESS_INFO;
+  const { isSpanish } = useLocale();
+  const businessInfo = isSpanish ? BUSINESS_INFO_ES : BUSINESS_INFO_EN;
+  const t = getFooterTranslations(isSpanish);
+
+  const tagline = t.taglineTemplate
+    .replace("{country}", businessInfo.country)
+    .replace("{year}", String(businessInfo.foundedYear));
 
   return (
     <footer className="border-t bg-muted/30">
@@ -24,48 +33,50 @@ export const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              {businessInfo.tagline} across {businessInfo.country} and Europe since {businessInfo.foundedYear}.
+              {businessInfo.tagline} {tagline}.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.facebook.com/61584540810577/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/company/szitrading/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.tiktok.com/@szitrading" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="TikTok">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4">{t.quickLinksTitle}</h3>
             <ul className="space-y-2">
-              <li><Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Services</Link></li>
-              <li><Link to="/get-quote" className="text-sm text-muted-foreground hover:text-primary transition-colors">Get Quote</Link></li>
-              <li><Link to="/relocation" className="text-sm text-muted-foreground hover:text-primary transition-colors">Relocation</Link></li>
-              <li><Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              {t.quickLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4">Services</h3>
+            <h3 className="font-semibold mb-4">{t.servicesTitle}</h3>
             <ul className="space-y-2">
-              <li className="text-sm text-muted-foreground">Spanish Road Transport</li>
-              <li className="text-sm text-muted-foreground">European Logistics</li>
-              <li className="text-sm text-muted-foreground">Global Shipping</li>
-              <li className="text-sm text-muted-foreground">Warehousing</li>
-              <li className="text-sm text-muted-foreground">Supply Chain</li>
+              {t.services.map((service) => (
+                <li key={service} className="text-sm text-muted-foreground">{service}</li>
+              ))}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4">Contact Us</h3>
+            <h3 className="font-semibold mb-4">{t.contactTitle}</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -90,7 +101,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} S&Z TRADING INTERNATIONAL S.C.A. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {businessInfo.name}. {t.copyright}</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +13,12 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { BUSINESS_INFO } from "@/lib/constants.es";
+<<<<<<< Updated upstream
+=======
+import { loadAttribution } from "@/lib/attribution";
+import { trackContactSubmitted } from "@/lib/tracking";
+import { ContactPageSchema } from "@/components/StructuredData";
+>>>>>>> Stashed changes
 
 const ContactEs = () => {
   const { toast } = useToast();
@@ -78,9 +84,11 @@ const ContactEs = () => {
         description="Contacta con S&Z Trading para cualquier necesidad logística. Soporte 24/7 para emergencias."
         keywords="contacto logística, soporte transporte, S&Z Trading"
       />
+      <ContactPageSchema />
       <Navigation />
       <WhatsAppButton />
 
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -232,8 +240,9 @@ const ContactEs = () => {
           </div>
         </div>
       </section>
+      </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };

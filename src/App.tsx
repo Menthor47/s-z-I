@@ -12,6 +12,12 @@ import TrackShipment from "./pages/TrackShipment";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Relocation from "./pages/Relocation";
+<<<<<<< Updated upstream
+=======
+import RelocationCity from "./pages/RelocationCity";
+import Resources from "./pages/Resources";
+import ResourceArticle from "./pages/ResourceArticle";
+>>>>>>> Stashed changes
 import IndexEs from "./pages/es/IndexEs";
 import ServicesEs from "./pages/es/ServicesEs";
 import AboutEs from "./pages/es/AboutEs";
@@ -30,6 +36,13 @@ const routes = [
   { path: "/track", element: <TrackShipment /> },
   { path: "/about", element: <About />, spanishElement: <AboutEs /> },
   { path: "/contact", element: <Contact />, spanishElement: <ContactEs /> },
+<<<<<<< Updated upstream
+=======
+  { path: "/relocation/:citySlug", element: <RelocationCity />, spanishElement: <RelocationCityEs /> },
+  { path: "/resources", element: <Resources />, spanishElement: <ResourcesEs /> },
+  { path: "/resources/:slug", element: <ResourceArticle />, spanishElement: <ResourceArticleEs /> },
+  { path: "/p/:partnerSlug", element: <PartnerLanding />, spanishElement: <PartnerLandingEs /> },
+>>>>>>> Stashed changes
 ];
 
 const AppContent = () => {

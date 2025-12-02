@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Globe, TrendingUp } from "lucide-react";
 import { SEO } from "@/components/SEO";
@@ -17,6 +17,7 @@ const AboutEs = () => {
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -137,8 +138,9 @@ const AboutEs = () => {
           </div>
         </div>
       </section>
+      </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };

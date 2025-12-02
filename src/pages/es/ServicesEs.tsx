@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Truck, Globe, Warehouse, Ship, TrendingUp, Package } from "lucide-react";
@@ -114,6 +114,7 @@ const ServicesEs = () => {
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
@@ -285,8 +286,9 @@ const ServicesEs = () => {
           </div>
         </div>
       </section>
+      </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };

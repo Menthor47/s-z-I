@@ -150,14 +150,10 @@ const GetQuote = () => {
         estimated_cost: estimatedCost ?? null,
       };
 
-      console.log("Submitting quote data:", insertData);
-
       const { data, error } = await supabase
         .from("quotes")
         .insert([insertData])
         .select();
-
-      console.log("Supabase response - data:", data, "error:", error);
 
       if (error) {
         console.error("Supabase error details:", error);
@@ -169,7 +165,15 @@ const GetQuote = () => {
         throw new Error("Insert succeeded but no data returned");
       }
 
+<<<<<<< Updated upstream
       console.log("Quote successfully inserted:", data[0]);
+=======
+      trackQuoteSubmitted({
+        locale: "en",
+        serviceType: formData.serviceType,
+        attribution,
+      });
+>>>>>>> Stashed changes
 
       toast({
         title: "Quote Request Submitted!",

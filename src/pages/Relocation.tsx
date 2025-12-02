@@ -6,7 +6,12 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { Truck, MapPin, Package, Clock, CheckCircle } from "lucide-react";
+<<<<<<< Updated upstream
 import { Link } from "react-router-dom";
+=======
+import { Link, useNavigate } from "react-router-dom";
+import { ServiceSchema } from "@/components/StructuredData";
+>>>>>>> Stashed changes
 
 const Relocation = () => {
   return (
@@ -16,9 +21,14 @@ const Relocation = () => {
         description="Professional business and office relocation services across Spain and Europe. Careful planning, expert handling, and minimal downtime for your move."
         keywords="business relocation, office move, warehouse relocation, logistics Spain, European relocation"
       />
+      <ServiceSchema 
+        serviceName="Business Relocation Services"
+        serviceDescription="Professional business and office relocation services across Spain and Europe. Careful planning, expert handling, and minimal downtime for your move."
+      />
       <Navigation />
       <WhatsAppButton />
 
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -200,8 +210,52 @@ const Relocation = () => {
               </Link>
             </Button>
           </div>
+<<<<<<< Updated upstream
+=======
+          <div className="mt-6 text-sm text-white/90 space-y-1">
+            <p>
+              Want to prepare your move in more detail? Read our{" "}
+              <Link
+                to="/resources/moving-to-spain-guide"
+                className="underline-offset-2 hover:underline"
+              >
+                complete guide to moving to Spain
+              </Link>
+              .
+            </p>
+            <p>
+              Planning an office relocation? Check the{" "}
+              <Link
+                to="/resources/office-move-checklist"
+                className="underline-offset-2 hover:underline"
+              >
+                office move checklist
+              </Link>
+              .
+            </p>
+            <p>
+              Focusing on specific cities? Learn more about our relocation services in{" "}
+              <Link
+                to="/relocation/madrid"
+                className="underline-offset-2 hover:underline"
+              >
+                Madrid
+              </Link>
+              {" "}
+              and{" "}
+              <Link
+                to="/relocation/malaga"
+                className="underline-offset-2 hover:underline"
+              >
+                Málaga
+              </Link>
+              .
+            </p>
+          </div>
+>>>>>>> Stashed changes
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

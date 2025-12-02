@@ -48,7 +48,6 @@ const TrackShipment = () => {
           filter: `tracking_number=eq.${shipment.tracking_number}`
         },
         (payload) => {
-          console.log('Shipment update:', payload);
           if (payload.new) {
             const newShipment = payload.new as any;
             setShipment({
@@ -170,6 +169,7 @@ const TrackShipment = () => {
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -333,6 +333,7 @@ const TrackShipment = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

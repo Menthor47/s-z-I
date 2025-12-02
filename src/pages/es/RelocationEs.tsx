@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { FooterEs } from "@/components/es/FooterEs";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Truck, Package, MapPin, Clock, Shield, Users } from "lucide-react";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
+import { ServiceSchema } from "@/components/StructuredData";
 
 export const RelocationEs = () => {
   const features = [
@@ -67,9 +68,14 @@ export const RelocationEs = () => {
         description="Servicio integral de mudanzas empresariales en España y Europa. Planificación profesional para minimizar tiempos de inactividad."
         keywords="mudanza de oficinas, reubicación empresarial, traslado de negocio"
       />
+      <ServiceSchema 
+        serviceName="Servicios de Reubicación Empresarial"
+        serviceDescription="Servicio integral de mudanzas empresariales en España y Europa. Planificación profesional para minimizar tiempos de inactividad."
+      />
       <Navigation />
       <WhatsAppButton />
       
+      <main id="main-content">
       <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <div className="mb-4 text-left">
@@ -215,6 +221,49 @@ export const RelocationEs = () => {
                   <Link to="/es/contact">Habla con un experto</Link>
                 </Button>
               </div>
+<<<<<<< Updated upstream
+=======
+              <div className="mt-6 text-sm text-muted-foreground space-y-1">
+                <p>
+                  ¿Quieres preparar mejor tu traslado? Lee nuestra{" "}
+                  <Link
+                    to="/es/resources/guia-mudarse-a-espana"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    guía completa para mudarse a España
+                  </Link>
+                  .
+                </p>
+                <p>
+                  Si gestionas una oficina, consulta la{" "}
+                  <Link
+                    to="/es/resources/checklist-mudanza-oficina"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    checklist para una mudanza de oficina sin estrés
+                  </Link>
+                  .
+                </p>
+                <p>
+                  ¿Te interesa una ciudad concreta? Descubre nuestros servicios de reubicación en{" "}
+                  <Link
+                    to="/es/relocation/madrid"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    Madrid
+                  </Link>
+                  {" "}
+                  y{" "}
+                  <Link
+                    to="/es/relocation/malaga"
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
+                    Málaga
+                  </Link>
+                  .
+                </p>
+              </div>
+>>>>>>> Stashed changes
             </div>
             
             <div className="bg-muted rounded-lg p-8">
@@ -277,8 +326,9 @@ export const RelocationEs = () => {
           </div>
         </div>
       </section>
+      </main>
 
-      <FooterEs />
+      <Footer />
     </div>
   );
 };
