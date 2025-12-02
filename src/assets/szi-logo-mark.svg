@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-labelledby="title desc">
+  <title id="title">S&Z Trading / SZI Group</title>
+  <desc id="desc">Clean wordmark logo for S&Z Trading International (SZI Group)</desc>
+  <defs>
+    <linearGradient id="szi-letter-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="hsl(222, 76%, 40%)" />
+      <stop offset="100%" stop-color="hsl(25, 95%, 53%)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded white capsule with subtle border -->
+  <rect
+    x="0.5"
+    y="0.5"
+    width="239"
+    height="63"
+    rx="14"
+    fill="white"
+    stroke="hsl(222, 76%, 40%)"
+    stroke-width="1"
+  />
+
+  <!-- SZI letters with blue→orange gradient -->
+  <text
+    x="26"
+    y="38"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="3"
+    fill="url(#szi-letter-gradient)"
+  >
+    SZI
+  </text>
+
+  <!-- GROUP label -->
+  <text
+    x="28"
+    y="52"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="12"
+    font-weight="500"
+    letter-spacing="2"
+    fill="hsl(222, 47%, 11%)"
+  >
+    GROUP
+  </text>
+</svg>

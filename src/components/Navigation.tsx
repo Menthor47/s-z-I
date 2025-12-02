@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { BUSINESS_INFO as BUSINESS_INFO_EN } from "@/lib/constants";
 import { BUSINESS_INFO as BUSINESS_INFO_ES } from "@/lib/constants.es";
 import { useLocale } from "@/hooks/useLocale";
-import sziLogo from "@/assets/szi-group-logo.jpg";
+import sziLogo from "@/assets/szi-logo-mark.svg";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);

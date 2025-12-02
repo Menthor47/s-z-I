@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">S&Z Trading Icon</title>
+  <desc id="desc">Monogram icon for S&Z Trading International</desc>
+  <defs>
+    <linearGradient id="sz-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="hsl(222, 76%, 40%)" />
+      <stop offset="100%" stop-color="hsl(25, 95%, 53%)" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sz-gradient)" />
+  <text
+    x="50%"
+    y="52%"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="2"
+    fill="white"
+  >
+    SZ
+  </text>
+</svg>
