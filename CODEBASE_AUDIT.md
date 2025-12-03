@@ -2,7 +2,7 @@
 
 **Date:** December 2, 2025  
 **Project:** SZI Trans - S&Z Trading International Website  
-**Domain:** szitrans.com
+**Domain:** szitrans.eu
 
 ---
 

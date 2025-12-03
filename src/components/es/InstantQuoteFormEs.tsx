@@ -103,7 +103,7 @@ export const InstantQuoteFormEs = () => {
             </div>
           </div>
           <Button type="submit" className="w-full" size="lg">
-            Calcular coste
+            Iniciar presupuesto
           </Button>
         </form>
       </CardContent>

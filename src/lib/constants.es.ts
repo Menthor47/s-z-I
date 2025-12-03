@@ -12,7 +12,7 @@ export const BUSINESS_INFO = {
   // Información de contacto
   phone: "+34 684 48 24 40",
   phoneRaw: "+34684482440", // Para enlaces tel:
-  email: "esoffice@szitrans.com",
+  email: "esoffice@szitrans.eu",
   
   // Ubicación
   city: "Málaga",
@@ -20,16 +20,18 @@ export const BUSINESS_INFO = {
   countryCode: "ES",
   
   // Web
-  website: "https://szitrans.com",
+  website: "https://szitrans.eu",
   
   // Información de la empresa
   foundedYear: 2022,
   
   // Redes Sociales (agregar cuando estén disponibles)
   social: {
-    facebook: "#",
-    linkedin: "#",
-    twitter: "#",
+    facebook: "https://www.facebook.com/profile.php?id=61584540810577",
+    tiktok: "https://www.tiktok.com/@szitrading",
+    linkedin: "https://www.linkedin.com/company/szitrading",
+    twitter: "",
+    instagram: "https://www.instagram.com/szitrading/",
   },
   
   // Horario comercial

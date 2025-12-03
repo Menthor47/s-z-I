@@ -4,117 +4,153 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://szitrans.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/"/>
+    <loc>https://szitrans.eu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/"/>
+    <loc>https://szitrans.eu/es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Services -->
   <url>
-    <loc>https://szitrans.com/services</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/services"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/services"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/services"/>
+    <loc>https://szitrans.eu/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/services"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es/services</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/services"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/services"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/services"/>
+    <loc>https://szitrans.eu/es/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/services"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Relocation -->
   <url>
-    <loc>https://szitrans.com/relocation</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation"/>
+    <loc>https://szitrans.eu/relocation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/relocation"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/relocation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/relocation"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es/relocation</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/relocation"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/relocation"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/relocation"/>
+    <loc>https://szitrans.eu/es/relocation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/relocation"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/relocation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/relocation"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Get Quote -->
   <url>
-    <loc>https://szitrans.com/get-quote</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/get-quote"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/get-quote"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/get-quote"/>
+    <loc>https://szitrans.eu/get-quote</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/get-quote"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/get-quote"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/get-quote"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es/get-quote</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/get-quote"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/get-quote"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/get-quote"/>
+    <loc>https://szitrans.eu/es/get-quote</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/get-quote"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/get-quote"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/get-quote"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- About -->
   <url>
-    <loc>https://szitrans.com/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/about"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/about"/>
+    <loc>https://szitrans.eu/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/about"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/about"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/about"/>
+    <loc>https://szitrans.eu/es/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/about"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Contact -->
   <url>
-    <loc>https://szitrans.com/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/contact"/>
+    <loc>https://szitrans.eu/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/contact"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://szitrans.com/es/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.com/es/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.com/contact"/>
+    <loc>https://szitrans.eu/es/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/contact"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
+  
+  <!-- Legal -->
+  <url>
+    <loc>https://szitrans.eu/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.eu/es/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/privacy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.eu/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://szitrans.eu/es/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://szitrans.eu/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://szitrans.eu/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://szitrans.eu/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
   
 </urlset>

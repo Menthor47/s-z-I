@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Instagram, Music2 } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants.es";
 import sziLogo from "@/assets/szi-logo-mark.svg";
 
@@ -27,7 +27,7 @@ export const FooterEs = () => {
               {businessInfo.tagline} en {businessInfo.country} y Europa desde {businessInfo.foundedYear}.
             </p>
             <div className="flex space-x-4">
-              {businessInfo.social.facebook !== "#" && (
+              {businessInfo.social.facebook && (
                 <a
                   href={businessInfo.social.facebook}
                   className="text-muted-foreground hover:text-primary transition-colors"
@@ -36,7 +36,7 @@ export const FooterEs = () => {
                   <Facebook className="h-5 w-5" />
                 </a>
               )}
-              {businessInfo.social.linkedin !== "#" && (
+              {businessInfo.social.linkedin && (
                 <a
                   href={businessInfo.social.linkedin}
                   className="text-muted-foreground hover:text-primary transition-colors"
@@ -45,7 +45,25 @@ export const FooterEs = () => {
                   <Linkedin className="h-5 w-5" />
                 </a>
               )}
-              {businessInfo.social.twitter !== "#" && (
+              {businessInfo.social.instagram && (
+                <a
+                  href={businessInfo.social.instagram}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+              )}
+              {businessInfo.social.tiktok && (
+                <a
+                  href={businessInfo.social.tiktok}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="TikTok"
+                >
+                  <Music2 className="h-5 w-5" />
+                </a>
+              )}
+              {businessInfo.social.twitter && (
                 <a
                   href={businessInfo.social.twitter}
                   className="text-muted-foreground hover:text-primary transition-colors"

@@ -10,7 +10,7 @@ export const LocalBusinessSchema = () => {
     "@context": "https://schema.org",
     "@type": "FreightCompany",
     "name": businessInfo.name,
-    "image": "https://szitrans.com/hero-truck.jpg",
+    "image": "https://szitrans.eu/hero-truck.jpg",
     "description": isSpanish
       ? "Servicios profesionales de transporte y logística en España y Europa. Especialistas en transporte por carretera, almacenaje, reubicaciones y envíos globales."
       : "Professional freight and logistics services across Spain and Europe. Specializing in road transport, warehousing, relocation services, and global shipping solutions.",
@@ -21,7 +21,7 @@ export const LocalBusinessSchema = () => {
     },
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
-    "url": "https://szitrans.com",
+    "url": "https://szitrans.eu",
     "priceRange": "€€",
     "openingHoursSpecification": [
       {

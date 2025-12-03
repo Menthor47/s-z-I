@@ -13,8 +13,8 @@
 - **Company Name**: "S&Z Trading International" → "S&Z TRADING INTERNATIONAL S.C.A."
 - **Address**: "Calle Principal 123, Madrid, 28001" → "Málaga" (simplified, no street address needed)
 - **Phone**: "+34900123456" → "+34 684 48 24 40"
-- **Email**: "info@sztrading.com" → "esoffice@szitrans.com"
-- **URL**: "https://sztrading.com" → "https://szitrans.com"
+- **Email**: "info@sztrading.com" → "esoffice@szitrans.eu"
+- **URL**: "https://sztrading.com" → "https://szitrans.eu"
 - **Description**: Added "relocation services" to the description
 - **Impact**: Search engines were indexing incorrect business information
 
