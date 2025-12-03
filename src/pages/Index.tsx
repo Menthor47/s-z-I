@@ -5,7 +5,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { TrustSignals } from "@/components/TrustSignals";
 import { Testimonials } from "@/components/Testimonials";
 import { Button } from "@/components/ui/button";
-import { Truck, Train, Ship, Warehouse, Globe, TrendingUp } from "lucide-react";
+import { Truck, Ship, Warehouse, Globe, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-truck.jpg";
 import { SEO } from "@/components/SEO";

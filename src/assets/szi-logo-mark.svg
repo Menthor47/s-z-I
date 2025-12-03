@@ -19,6 +19,13 @@
     stroke="hsl(222, 76%, 40%)"
     stroke-width="1"
   />
+  
+  <!-- Subtle speed lines behind the letters -->
+  <g fill="hsl(222, 76%, 40%)" opacity="0.2">
+    <rect x="18" y="24" width="42" height="2" rx="1" />
+    <rect x="22" y="30" width="52" height="2" rx="1" />
+    <rect x="26" y="36" width="38" height="2" rx="1" />
+  </g>
 
   <!-- SZI letters with blue→orange gradient -->
   <text

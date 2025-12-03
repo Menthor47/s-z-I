@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants.es";
-import sziLogo from "@/assets/szi-group-logo.jpg";
+import sziLogo from "@/assets/szi-logo-mark.svg";
 
 export const FooterEs = () => {
   const businessInfo = BUSINESS_INFO;
