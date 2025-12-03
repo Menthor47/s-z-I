@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Instagram, Music2 } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants";
-import sziLogo from "@/assets/szi-logo-mark.svg";
+// Try direct path import as fallback
+import sziLogo from "../assets/szi-logo-mark.svg";
 
 export const Footer = () => {
   const businessInfo = BUSINESS_INFO;
