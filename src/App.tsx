@@ -31,6 +31,10 @@ const ResourcesEs = lazy(() => import("./pages/es/ResourcesEs"));
 const ResourceArticleEs = lazy(() => import("./pages/es/ResourceArticleEs"));
 const PartnerLanding = lazy(() => import("./pages/PartnerLanding"));
 const PartnerLandingEs = lazy(() => import("./pages/es/PartnerLandingEs"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const PrivacyPolicyEs = lazy(() => import("./pages/es/PrivacyPolicyEs"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const TermsOfServiceEs = lazy(() => import("./pages/es/TermsOfServiceEs"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -47,6 +51,8 @@ const routes = [
   { path: "/resources", element: <Resources />, spanishElement: <ResourcesEs /> },
   { path: "/resources/:slug", element: <ResourceArticle />, spanishElement: <ResourceArticleEs /> },
   { path: "/p/:partnerSlug", element: <PartnerLanding />, spanishElement: <PartnerLandingEs /> },
+  { path: "/privacy", element: <PrivacyPolicy />, spanishElement: <PrivacyPolicyEs /> },
+  { path: "/terms", element: <TermsOfService />, spanishElement: <TermsOfServiceEs /> },
 ];
 
 const AppContent = () => {

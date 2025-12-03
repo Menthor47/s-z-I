@@ -109,6 +109,10 @@ export const FooterEs = () => {
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} {businessInfo.name}. Todos los derechos reservados.</p>
+          <div className="mt-2 space-x-4">
+            <Link to="/es/privacy" className="hover:text-primary transition-colors">Política de Privacidad</Link>
+            <Link to="/es/terms" className="hover:text-primary transition-colors">Términos de Servicio</Link>
+          </div>
         </div>
       </div>
     </footer>
