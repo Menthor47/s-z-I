@@ -5,8 +5,26 @@ import { useMemo, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { BUSINESS_INFO as BUSINESS_INFO_EN } from "@/lib/constants";
 import { BUSINESS_INFO as BUSINESS_INFO_ES } from "@/lib/constants.es";
+import { ROUTES } from "@/lib/routes";
 import { useLocale } from "@/hooks/useLocale";
-import sziLogo from "../assets/szi-logo-mark.svg";
+import { SziLogo } from "@/components/SziLogo";
+
+type NavItemKey = "services" | "relocation" | "resources" | "get-quote" | "about" | "contact";
+
+interface NavItem {
+  readonly key: NavItemKey;
+  readonly labelEn: string;
+  readonly labelEs: string;
+}
+
+const NAV_ITEMS: readonly NavItem[] = [
+  { key: "services", labelEn: "Services", labelEs: "Servicios" },
+  { key: "relocation", labelEn: "Relocation", labelEs: "Reubicación" },
+  { key: "resources", labelEn: "Resources", labelEs: "Recursos" },
+  { key: "get-quote", labelEn: "Get Quote", labelEs: "Solicitar presupuesto" },
+  { key: "about", labelEn: "About", labelEs: "Sobre nosotros" },
+  { key: "contact", labelEn: "Contact", labelEs: "Contacto" },
+] as const;
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,33 +34,18 @@ export const Navigation = () => {
   const basePath = isSpanish ? "/es" : "";
   const homePath = basePath || "/";
 
-  const normalizedPath = isSpanish
-    ? location.pathname.replace(/^\/es/, "") || "/"
-    : location.pathname || "/";
+  const normalizedPath = location.pathname.replace(/^\/es/, "") || "/";
 
   const localeTogglePath = isSpanish
-    ? normalizedPath === "/" ? "/" : normalizedPath
+    ? normalizedPath
     : normalizedPath === "/" ? "/es" : `/es${normalizedPath}`;
 
   const navLinks = useMemo(
     () =>
-      isSpanish
-        ? [
-            { label: "Servicios", path: `${basePath}/services` },
-            { label: "Reubicación", path: `${basePath}/relocation` },
-            { label: "Recursos", path: `${basePath}/resources` },
-            { label: "Solicitar presupuesto", path: `${basePath}/get-quote` },
-            { label: "Sobre nosotros", path: `${basePath}/about` },
-            { label: "Contacto", path: `${basePath}/contact` },
-          ]
-        : [
-            { label: "Services", path: `/services` },
-            { label: "Relocation", path: `/relocation` },
-            { label: "Resources", path: `/resources` },
-            { label: "Get Quote", path: `/get-quote` },
-            { label: "About", path: `/about` },
-            { label: "Contact", path: `/contact` },
-          ],
+      NAV_ITEMS.map((item) => ({
+        label: isSpanish ? item.labelEs : item.labelEn,
+        path: `${basePath}${ROUTES[item.key].path}`,
+      })),
     [basePath, isSpanish]
   );
 
@@ -74,10 +77,9 @@ export const Navigation = () => {
             className="flex items-center space-x-2"
             aria-label={isSpanish ? "S&Z Trading / SZI Group - Ir al inicio" : "S&Z Trading / SZI Group - Go to homepage"}
           >
-            <img
-              src={sziLogo}
+            <SziLogo
+              className="h-[3.25rem] w-auto rounded-lg shadow-sm"
               alt={isSpanish ? "Logotipo S&Z Trading / SZI Group" : "S&Z Trading / SZI Group logo"}
-              className="h-10 w-auto rounded-lg bg-white object-contain shadow-sm"
             />
             <div className="hidden md:block">
               <div className="text-lg font-bold text-trust-navy">S&Z Trading</div>
@@ -85,33 +87,33 @@ export const Navigation = () => {
             </div>
           </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive(link.path) ? "text-primary" : "text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive(link.path) ? "text-primary" : "text-foreground"
-              }`}
+              to={localeTogglePath}
+              className="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-primary"
             >
-              {link.label}
+              <span
+                className="text-lg"
+                role="img"
+                aria-label={isSpanish ? "UK flag" : "Spanish flag"}
+              >
+                {isSpanish ? "🇬🇧" : "🇪🇸"}
+              </span>
+              <span>{isSpanish ? "English" : "Español"}</span>
             </Link>
-          ))}
-          <Link
-            to={localeTogglePath}
-            className="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-primary"
-          >
-            <span
-              className="text-lg"
-              role="img"
-              aria-label={isSpanish ? "UK flag" : "Spanish flag"}
-            >
-              {isSpanish ? "🇬🇧" : "🇪🇸"}
-            </span>
-            <span>{isSpanish ? "English" : "Español"}</span>
-          </Link>
-        </nav>
+          </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type { AnyZodObject } from "zod";
+import type { TablesInsert } from "@/integrations/supabase/types";
+import type { FormErrors } from "@/lib/formTypes";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { loadAttribution } from "@/lib/attribution";
@@ -12,6 +14,8 @@ export interface ContactFormValues {
   readonly company: string;
   readonly message: string;
 }
+
+type ContactInsert = TablesInsert<"contact_submissions">;
 
 export interface ContactFormCopy {
   readonly validationErrorTitle: string;
@@ -32,7 +36,7 @@ interface UseContactFormOptions {
 
 interface UseContactFormReturn {
   readonly formData: ContactFormValues;
-  readonly errors: Record<string, string>;
+  readonly errors: FormErrors<ContactFormValues>;
   readonly loading: boolean;
   readonly handleChange: (field: keyof ContactFormValues, value: string) => void;
   readonly handleSubmit: (event: React.FormEvent) => Promise<void>;
@@ -49,7 +53,7 @@ export function useContactForm(options: UseContactFormOptions): UseContactFormRe
     company: "",
     message: "",
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<FormErrors<ContactFormValues>>({});
   const [loading, setLoading] = useState(false);
   const [lastSubmittedAt, setLastSubmittedAt] = useState<number | null>(null);
 
@@ -74,12 +78,15 @@ export function useContactForm(options: UseContactFormOptions): UseContactFormRe
     const result = schema.safeParse(formData);
 
     if (!result.success) {
-      const newErrors: Record<string, string> = {};
+      const newErrors: FormErrors<ContactFormValues> = {};
 
       for (const issue of result.error.issues) {
         const field = issue.path[0];
-        if (typeof field === "string" && !newErrors[field]) {
-          newErrors[field] = issue.message;
+        if (typeof field === "string" && field in formData) {
+          const key = field as keyof ContactFormValues;
+          if (!newErrors[key]) {
+            newErrors[key] = issue.message;
+          }
         }
       }
 
@@ -96,7 +103,9 @@ export function useContactForm(options: UseContactFormOptions): UseContactFormRe
     const attribution = loadAttribution();
 
     try {
-      const { error } = await supabase.from("contact_submissions").insert([formData]);
+      const { error } = await supabase
+        .from("contact_submissions")
+        .insert<ContactInsert>([formData]);
 
       if (error) {
         throw error;
