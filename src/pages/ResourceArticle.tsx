@@ -5,7 +5,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "react-router-dom";
-import { findArticleBySlug, type ResourceArticleConfig, type ResourceSection } from "@/lib/resources";
+import { findArticleBySlug, type ResourceSection } from "@/lib/resources";
 import { ResourceArticleSchema } from "@/components/StructuredData";
 
 function ResourceArticle(): JSX.Element {

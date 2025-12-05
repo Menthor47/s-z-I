@@ -3,13 +3,12 @@ import { Navigation } from "@/components/Navigation";
 import { FooterEs } from "@/components/es/FooterEs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Truck, MapPin, Package, User, CheckCircle, Loader2 } from "lucide-react";
+import { Truck, MapPin, Package, User, CheckCircle } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -44,13 +43,13 @@ const GetQuoteEs = () => {
   const { toast } = useToast();
   const location = useLocation();
   const initialData = (location.state || {}) as InitialQuoteState;
-  
+
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
   const [errors, setErrors] = useState<QuoteFormErrorsEs>({});
   const lastSubmitRef = useRef<number | null>(null);
-  
+
   const [formData, setFormData] = useState<QuoteFormDataEs>({
     serviceType: initialData.serviceType || "",
     origin: initialData.origin || "",
@@ -81,7 +80,7 @@ const GetQuoteEs = () => {
     const weightFactor = parseFloat(formData.weight) * QUOTE_CALCULATION.weightFactor;
     const baseRate = SERVICE_RATES[formData.serviceType as keyof typeof SERVICE_RATES] || 300;
     const specialReqCost = formData.specialRequirements.length * QUOTE_CALCULATION.specialRequirementCost;
-    
+
     const total = baseRate + weightFactor + specialReqCost;
     setEstimatedCost(Math.round(total));
   };
@@ -253,9 +252,8 @@ const GetQuoteEs = () => {
               {serviceOptions.map((service) => (
                 <Card
                   key={service.value}
-                  className={`cursor-pointer transition-all hover:shadow-md ${
-                    formData.serviceType === service.value ? "border-primary border-2" : ""
-                  }`}
+                  className={`cursor-pointer transition-all hover:shadow-md ${formData.serviceType === service.value ? "border-primary border-2" : ""
+                    }`}
                   onClick={() => setFormData({ ...formData, serviceType: service.value })}
                 >
                   <CardContent className="p-6">
@@ -531,67 +529,67 @@ const GetQuoteEs = () => {
       <WhatsAppButton />
 
       <main id="main-content">
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="mb-4 text-left">
-            <PageBreadcrumbs items={[{ label: "Inicio", to: "/es" }, { label: "Solicitar presupuesto" }]} />
+        <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+          <div className="container mx-auto px-4">
+            <div className="mb-4 text-left">
+              <PageBreadcrumbs items={[{ label: "Inicio", to: "/es" }, { label: "Solicitar presupuesto" }]} />
+            </div>
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Solicitar presupuesto</h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                Cuéntanos qué necesitas mover y prepararemos un plan con costes claros en minutos.
+              </p>
+            </div>
           </div>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Solicitar presupuesto</h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Cuéntanos qué necesitas mover y prepararemos un plan con costes claros en minutos.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-16 flex-1">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="space-y-8">
-            {step <= steps.length && (
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-muted-foreground">Paso {step} de {steps.length}</span>
-                  <span className="text-sm font-medium">{steps[step - 1]}</span>
-                </div>
-                <Progress value={(step / steps.length) * 100} className="h-2" />
-              </div>
-            )}
-
-            <Card>
-              <CardContent className="p-6 space-y-8">
-                {renderStep()}
-                {step <= 4 && (
-                  <div className="flex justify-between">
-                    {step > 1 && (
-                      <Button variant="outline" onClick={prevStep}>
-                        Atrás
-                      </Button>
-                    )}
-                    {step === 4 ? (
-                      <Button
-                        className="ml-auto"
-                        disabled={loading}
-                        onClick={handleSubmit}
-                      >
-                        {loading ? "Procesando..." : "Enviar solicitud"}
-                      </Button>
-                    ) : (
-                      <Button
-                        className="ml-auto"
-                        disabled={!canProceed() || loading}
-                        onClick={nextStep}
-                      >
-                        {loading ? "Procesando..." : "Continuar"}
-                      </Button>
-                    )}
+        <section className="py-16 flex-1">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="space-y-8">
+              {step <= steps.length && (
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-medium text-muted-foreground">Paso {step} de {steps.length}</span>
+                    <span className="text-sm font-medium">{steps[step - 1]}</span>
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                  <Progress value={(step / steps.length) * 100} className="h-2" />
+                </div>
+              )}
+
+              <Card>
+                <CardContent className="p-6 space-y-8">
+                  {renderStep()}
+                  {step <= 4 && (
+                    <div className="flex justify-between">
+                      {step > 1 && (
+                        <Button variant="outline" onClick={prevStep}>
+                          Atrás
+                        </Button>
+                      )}
+                      {step === 4 ? (
+                        <Button
+                          className="ml-auto"
+                          disabled={loading}
+                          onClick={handleSubmit}
+                        >
+                          {loading ? "Procesando..." : "Enviar solicitud"}
+                        </Button>
+                      ) : (
+                        <Button
+                          className="ml-auto"
+                          disabled={!canProceed() || loading}
+                          onClick={nextStep}
+                        >
+                          {loading ? "Procesando..." : "Continuar"}
+                        </Button>
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </main>
 
       <FooterEs />

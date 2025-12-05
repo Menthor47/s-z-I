@@ -7,7 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { TrustSignals } from "@/components/TrustSignals";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Building2, Users, Truck, Package, Shield, Clock } from "lucide-react";
+import { Star, Building2, Truck, Package, Shield, Clock } from "lucide-react";
 import { loadAttribution, saveAttribution } from "@/lib/attribution";
 
 type AudienceType = "expat" | "b2b" | "realestate" | "office" | "general";
@@ -314,8 +314,8 @@ function PartnerLanding(): JSX.Element {
                 {config.primaryService === "relocation"
                   ? "Relocation Services"
                   : config.primaryService === "freight"
-                  ? "Freight Services"
-                  : "Logistics Solutions"}
+                    ? "Freight Services"
+                    : "Logistics Solutions"}
               </span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-6">{config.heroTitle}</h1>
@@ -328,8 +328,8 @@ function PartnerLanding(): JSX.Element {
                     config.primaryService === "relocation"
                       ? { serviceType: "relocation" }
                       : config.primaryService === "freight"
-                      ? { serviceType: "european-road" }
-                      : undefined
+                        ? { serviceType: "european-road" }
+                        : undefined
                   }
                 >
                   {config.ctaText}
@@ -478,8 +478,8 @@ function PartnerLanding(): JSX.Element {
                   config.primaryService === "relocation"
                     ? { serviceType: "relocation" }
                     : config.primaryService === "freight"
-                    ? { serviceType: "european-road" }
-                    : undefined
+                      ? { serviceType: "european-road" }
+                      : undefined
                 }
               >
                 {config.ctaText}

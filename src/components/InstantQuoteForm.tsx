@@ -13,6 +13,7 @@ export const InstantQuoteForm = () => {
     destination: "",
     weight: "",
     serviceType: "",
+    email: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -101,6 +102,15 @@ export const InstantQuoteForm = () => {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+          <div>
+            <label className="text-sm font-medium mb-2 block">Email Address</label>
+            <Input
+              type="email"
+              placeholder="Enter your email for the quote"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
           </div>
           <Button type="submit" className="w-full" size="lg">
             Start Your Quote

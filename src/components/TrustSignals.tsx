@@ -1,4 +1,4 @@
-import { Award, Users, Globe, TrendingUp } from "lucide-react";
+import { Award, Users, TrendingUp } from "lucide-react";
 
 export const TrustSignals = () => {
   const signals = [

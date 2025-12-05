@@ -7,7 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { TrustSignalsEs } from "@/components/es/TrustSignalsEs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Building2, Users, Truck, Package, Shield, Clock } from "lucide-react";
+import { Star, Building2, Truck, Package, Shield, Clock } from "lucide-react";
 import { loadAttribution, saveAttribution } from "@/lib/attribution";
 
 type AudienceType = "expat" | "b2b" | "realestate" | "office" | "general";
@@ -333,8 +333,8 @@ function PartnerLandingEs(): JSX.Element {
                     config.primaryService === "relocation"
                       ? { serviceType: "relocation" }
                       : config.primaryService === "freight"
-                      ? { serviceType: "european-road" }
-                      : undefined
+                        ? { serviceType: "european-road" }
+                        : undefined
                   }
                 >
                   {config.ctaText}
@@ -483,8 +483,8 @@ function PartnerLandingEs(): JSX.Element {
                   config.primaryService === "relocation"
                     ? { serviceType: "relocation" }
                     : config.primaryService === "freight"
-                    ? { serviceType: "european-road" }
-                    : undefined
+                      ? { serviceType: "european-road" }
+                      : undefined
                 }
               >
                 {config.ctaText}
