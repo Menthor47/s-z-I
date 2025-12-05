@@ -1,0 +1,354 @@
+{
+    "common": {
+        "getQuote": "Solicitar presupuesto",
+        "planMove": "Planificar reubicación",
+        "contactSpecialist": "Hablar con un especialista",
+        "readGuide": "Lee nuestra guía para mudarse a España",
+        "submit": "Enviar",
+        "back": "Atrás",
+        "continue": "Continuar",
+        "processing": "Procesando..."
+    },
+    "hero": {
+        "title": "Nueva competencia desde 2022.",
+        "subtitle": "El partner de reubicación y logística más competitivo de España. Entregando en toda Europa.",
+        "description": "Seguimos con hambre. Seguimos siendo competitivos. 3 años ofreciendo los resultados que los clientes españoles se merecen.",
+        "support": "Soporte 24/7",
+        "experts": "Expertos en reubicación",
+        "insured": "Carga asegurada"
+    },
+    "services": {
+        "title": "Nuestros servicios",
+        "subtitle": "Soluciones logísticas completas adaptadas a tu negocio",
+        "spanish-road": {
+            "title": "Transporte nacional",
+            "description": "Cobertura en toda España con opciones de entrega en 24h",
+            "priceRange": "150 € por envío",
+            "badge": "Más solicitado"
+        },
+        "european-road": {
+            "title": "Transporte europeo",
+            "description": "Logística transfronteriza en más de 25 países europeos",
+            "priceRange": "450 € por envío",
+            "badge": "Ideal para exportaciones"
+        },
+        "relocation": {
+            "title": "Servicios de reubicación",
+            "description": "Traslados empresariales y de oficinas con el máximo cuidado",
+            "priceRange": "500 € por proyecto de reubicación",
+            "badge": "Ideal para reubicación"
+        },
+        "global": {
+            "title": "Logística global",
+            "description": "Transporte marítimo y aéreo a todo el mundo",
+            "priceRange": "Desde 1.200 € por envío internacional"
+        },
+        "warehousing": {
+            "title": "Soluciones de almacenaje",
+            "description": "Instalaciones seguras en los principales hubs de España",
+            "priceRange": "Desde 200 €/mes"
+        },
+        "consultancy": {
+            "title": "Consultoría de supply chain",
+            "description": "Optimizamos tus operaciones logísticas",
+            "priceRange": "500 € por proyecto"
+        }
+    },
+    "relocationSection": {
+        "title": "Mudanzas y reubicaciones empresariales",
+        "description": "Traslada tu negocio por España y Europa con un partner que cuida tu carga como si fuera propia. Planificamos cada paso para que tu operación no se detenga.",
+        "features": {
+            "planning": {
+                "title": "Planificación integral",
+                "description": "Coordinadores dedicados que planifican tu mudanza desde el primer briefing hasta la entrega final."
+            },
+            "packing": {
+                "title": "Embalaje profesional",
+                "description": "Equipos formados, materiales premium y el equipo adecuado para cargas pesadas o delicadas."
+            },
+            "hours": {
+                "title": "Operamos fuera de horario",
+                "description": "Mudanzas nocturnas o en fin de semana para minimizar el impacto en tus equipos y clientes."
+            },
+            "transport": {
+                "title": "Transporte seguro y conforme",
+                "description": "Vehículos y rutas pensados para tu tipo de carga, con seguros adaptados a tu perfil de riesgo."
+            },
+            "coverage": {
+                "title": "Cobertura paneuropea",
+                "description": "Conexiones fiables por carretera e intermodales en los principales corredores europeos."
+            }
+        },
+        "cta": "Comparte tu ruta, fechas y lo que necesitas mover; prepararemos un plan y presupuesto a medida.",
+        "movingGuide": "¿Te mudas desde otro país?"
+    },
+    "ctaSection": {
+        "title": "¿Listo para optimizar tu logística?",
+        "description": "Obtén un presupuesto detallado en minutos. Respondemos en menos de 2 horas en horario laboral.",
+        "button": "Solicitar presupuesto formal"
+    },
+    "seo": {
+        "title": "Soluciones Profesionales de Transporte y Logística",
+        "description": "Transporte de mercancías fiable en toda España y Europa. Transporte por carretera, almacenaje, servicios de reubicación, logística global y consultoría de cadena de suministro. Obtenga presupuestos al instante 24/7."
+    },
+    "instantQuote": {
+        "title": "Calcula tu presupuesto",
+        "originCity": "Ciudad de origen",
+        "originPlaceholder": "Selecciona origen",
+        "destinationCity": "Ciudad de destino",
+        "destinationPlaceholder": "Selecciona destino",
+        "weight": "Peso (kg)",
+        "weightPlaceholder": "Introduce el peso",
+        "serviceType": "Tipo de servicio",
+        "servicePlaceholder": "Selecciona servicio",
+        "submit": "Iniciar presupuesto",
+        "cities": {
+            "madrid": "Madrid, España",
+            "barcelona": "Barcelona, España",
+            "valencia": "Valencia, España",
+            "seville": "Sevilla, España",
+            "bilbao": "Bilbao, España",
+            "malaga": "Málaga, España",
+            "zaragoza": "Zaragoza, España",
+            "lisbon": "Lisboa, Portugal",
+            "porto": "Oporto, Portugal",
+            "paris": "París, Francia",
+            "lyon": "Lyon, Francia",
+            "marseille": "Marsella, Francia",
+            "berlin": "Berlín, Alemania",
+            "munich": "Múnich, Alemania",
+            "frankfurt": "Fráncfort, Alemania",
+            "amsterdam": "Ámsterdam, Países Bajos",
+            "rotterdam": "Róterdam, Países Bajos",
+            "brussels": "Bruselas, Bélgica",
+            "antwerp": "Amberes, Bélgica",
+            "london": "Londres, Reino Unido",
+            "manchester": "Mánchester, Reino Unido",
+            "milan": "Milán, Italia",
+            "rome": "Roma, Italia",
+            "zurich": "Zúrich, Suiza",
+            "vienna": "Viena, Austria",
+            "copenhagen": "Copenhague, Dinamarca",
+            "stockholm": "Estocolmo, Suecia"
+        },
+        "serviceOptions": {
+            "spanish-road": "Transporte nacional",
+            "european-road": "Transporte europeo",
+            "express": "Entrega exprés",
+            "global": "Envío global"
+        }
+    },
+    "trustSignals": {
+        "years": {
+            "value": "3+",
+            "label": "Años en el mercado"
+        },
+        "clients": {
+            "value": "200+",
+            "label": "Clientes activos"
+        },
+        "countries": {
+            "value": "25+",
+            "label": "Países atendidos"
+        },
+        "delivery": {
+            "value": "98%",
+            "label": "Entregas puntuales"
+        }
+    },
+    "testimonials": {
+        "title": "Lo que dicen nuestros clientes",
+        "subtitle": "Empresas de toda Europa confían en nosotros para soluciones logísticas fiables",
+        "items": {
+            "0": {
+                "name": "Carlos Méndez",
+                "company": "TechDistrib Solutions",
+                "title": "Responsable de Logística",
+                "content": "S&Z Trading es nuestro socio fiable desde hace 3 años. Redujeron nuestros costes de envío un 22% y mejoraron los tiempos de entrega."
+            },
+            "1": {
+                "name": "María Santos",
+                "company": "EuroManufacture Ltd",
+                "title": "Directora de Cadena de Suministro",
+                "content": "Servicio sobresaliente en las rutas europeas. El seguimiento es excelente y la comunicación siempre es rápida."
+            },
+            "2": {
+                "name": "Jean Dupont",
+                "company": "FrenchFoods Import",
+                "title": "Responsable de Operaciones",
+                "content": "Las mejores tarifas para el corredor España-Francia. Manejan nuestra carga sensible a la temperatura con mucho cuidado."
+            }
+        }
+    },
+    "footer": {
+        "quickLinks": {
+            "title": "Enlaces rápidos",
+            "services": "Nuestros servicios",
+            "get-quote": "Solicitar presupuesto",
+            "relocation": "Reubicación",
+            "about": "Sobre nosotros",
+            "contact": "Contacto",
+            "terms": "Términos de Servicio",
+            "privacy": "Política de Privacidad"
+        },
+        "services": {
+            "title": "Servicios",
+            "spanish-road": "Transporte nacional",
+            "european": "Logística europea",
+            "global": "Envíos globales",
+            "warehousing": "Almacenaje",
+            "supply-chain": "Cadena de suministro"
+        },
+        "contact": {
+            "title": "Contáctanos"
+        },
+        "rights": "Todos los derechos reservados."
+    },
+    "servicesPage": {
+        "seo": {
+            "title": "Servicios de logística y transporte",
+            "description": "Transporte nacional, europeo, almacenaje, envíos globales y consultoría logística. Presupuestos en minutos."
+        },
+        "breadcrumb": {
+            "home": "Inicio",
+            "services": "Servicios"
+        },
+        "hero": {
+            "title": "Nuestros servicios",
+            "subtitle": "Soluciones logísticas completas para empresas modernas. Elige el servicio que mejor se adapte a tus rutas, carga y presupuesto."
+        },
+        "labels": {
+            "coverageArea": "Cobertura",
+            "deliveryTime": "Tiempo de entrega",
+            "keyBenefits": "Beneficios clave",
+            "priceRange": "Rango de precio:",
+            "getQuote": "Solicitar presupuesto"
+        },
+        "serviceList": {
+            "spanish-road": {
+                "title": "Transporte nacional",
+                "description": "Cobertura total en España con opciones flexibles para todo tipo de carga.",
+                "coverage": "Todas las provincias y principales ciudades españolas",
+                "deliveryTime": "24-48 horas en territorio nacional",
+                "priceRange": "150 € - 800 € por envío (rango habitual)",
+                "benefits": [
+                    "Entregas en 24 h a las principales ciudades",
+                    "Seguimiento GPS en tiempo real",
+                    "Opciones de control de temperatura",
+                    "Especialistas en carga frágil"
+                ]
+            },
+            "european-road": {
+                "title": "Transporte europeo",
+                "description": "Logística transfronteriza conectando España con más de 25 países europeos.",
+                "coverage": "UE27, Reino Unido, Suiza y Noruega",
+                "deliveryTime": "2-7 días según destino",
+                "priceRange": "450 € - 2.500 € por envío",
+                "benefits": [
+                    "Asistencia en trámites aduaneros",
+                    "Rutas multi entrega",
+                    "Opciones exprés",
+                    "Consolidación de cargas para ahorrar costes"
+                ]
+            },
+            "relocation": {
+                "title": "Reubicaciones empresariales",
+                "description": "Traslados profesionales de oficinas y negocios con el máximo cuidado.",
+                "coverage": "España y principales ciudades europeas",
+                "deliveryTime": "Calendario según proyecto",
+                "priceRange": "500 € - 5.000 € por proyecto de reubicación",
+                "benefits": [
+                    "Planificación previa al traslado",
+                    "Manejo especializado de equipamiento IT",
+                    "Mudanzas fuera de horario",
+                    "Seguro hasta 500.000 €"
+                ]
+            },
+            "global": {
+                "title": "Logística y envíos globales",
+                "description": "Servicios marítimos y aéreos para comercio internacional.",
+                "coverage": "Más de 150 países",
+                "deliveryTime": "5-30 días (aire/marítimo)",
+                "priceRange": "1.200 € - 15.000 € por envío internacional",
+                "benefits": [
+                    "Apoyo dedicado en aduanas",
+                    "Opciones FCL y LCL",
+                    "Carga aérea para urgencias",
+                    "Entrega puerta a puerta"
+                ]
+            },
+            "warehousing": {
+                "title": "Almacenaje y logística",
+                "description": "Instalaciones seguras y climatizadas estratégicamente situadas.",
+                "coverage": "Madrid, Barcelona y Valencia",
+                "deliveryTime": "Condiciones flexibles",
+                "priceRange": "200 € - 2.000 €/mes",
+                "benefits": [
+                    "Vigilancia 24/7 y CCTV",
+                    "Zonas climatizadas",
+                    "Sistemas de gestión de inventario",
+                    "Contratos a corto y largo plazo"
+                ]
+            },
+            "consultancy": {
+                "title": "Consultoría de cadena de suministro",
+                "description": "Análisis experto para reducir costes y mejorar la eficiencia.",
+                "coverage": "Consultoría remota y presencial",
+                "deliveryTime": "Según proyecto",
+                "priceRange": "500 € - 5.000 € por proyecto",
+                "benefits": [
+                    "Análisis de reducción de costes",
+                    "Estrategias de optimización de rutas",
+                    "Consolidación de proveedores",
+                    "Integración tecnológica"
+                ]
+            }
+        },
+        "faq": {
+            "title": "Preguntas frecuentes",
+            "subtitle": "Respuestas rápidas sobre nuestros servicios de transporte, logística y reubicación.",
+            "generalLogistics": "Logística general",
+            "movingRelocation": "Mudanzas y reubicaciones",
+            "questions": {
+                "regions": {
+                    "q": "¿Qué regiones cubrís?",
+                    "a": "Operamos desde España y cubrimos los principales corredores europeos: España, Portugal, Francia, Alemania, Benelux, Italia y Reino Unido."
+                },
+                "goods": {
+                    "q": "¿Qué tipo de mercancías transportáis?",
+                    "a": "Paletizado, cargas completas o parciales, maquinaria, retail, e-commerce y carga industrial. Para mercancía especial confirmamos la solución más segura."
+                },
+                "insurance": {
+                    "q": "¿Mis envíos están asegurados?",
+                    "a": "Sí, contamos con cobertura estándar y podemos ampliar el seguro para cargas de alto valor."
+                },
+                "quote": {
+                    "q": "¿Cómo solicito un presupuesto?",
+                    "a": "Completa el formulario online, envíanos un email o llámanos con origen, destino, fechas, peso y requisitos especiales."
+                },
+                "relocationType": {
+                    "q": "¿Qué tipo de mudanzas gestionáis?",
+                    "a": "Oficinas, almacenes y espacios industriales. También mudanzas residenciales vinculadas a proyectos corporativos."
+                },
+                "afterHours": {
+                    "q": "¿Trabajáis fuera de horario?",
+                    "a": "Sí, planificamos mudanzas nocturnas o en fin de semana para minimizar interrupciones."
+                },
+                "packing": {
+                    "q": "¿Proporcionáis materiales de embalaje?",
+                    "a": "Ofrecemos cajas, cajas especiales, etiquetas y servicios de embalaje/desembalaje."
+                },
+                "relocationQuote": {
+                    "q": "¿Qué información necesitáis para presupuestar?",
+                    "a": "Direcciones, fechas, tamaño aproximado, equipos especiales, accesos y si necesitáis embalaje."
+                }
+            }
+        },
+        "cta": {
+            "title": "¿Necesitas una solución a medida?",
+            "description": "Cada negocio es único. Cuéntanos tus requisitos y diseñaremos un plan logístico personalizado.",
+            "getQuote": "Obtener presupuesto detallado",
+            "contact": "Contactar con el equipo"
+        }
+    }
+}

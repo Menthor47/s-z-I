@@ -3,7 +3,6 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,6 +18,8 @@ import { BUSINESS_INFO, SERVICE_RATES, QUOTE_CALCULATION, SPECIAL_REQUIREMENTS }
 import { loadAttribution, formatAttributionForNotes } from "@/lib/attribution";
 import { trackQuoteSubmitted } from "@/lib/tracking";
 import { quoteFormSchema, type QuoteFormData } from "@/lib/validations";
+import type { TablesInsert } from "@/integrations/supabase/types";
+import type { FormErrors } from "@/lib/formTypes";
 
 interface InitialQuoteState {
   readonly serviceType?: string;
@@ -29,6 +30,9 @@ interface InitialQuoteState {
   readonly plannedDate?: string;
 }
 
+type QuoteFormErrors = FormErrors<QuoteFormData>;
+type QuoteInsert = TablesInsert<"quotes">;
+
 const GetQuote = () => {
   const { toast } = useToast();
   const location = useLocation();
@@ -37,7 +41,8 @@ const GetQuote = () => {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<QuoteFormErrors>({});
+  
   const lastSubmitRef = useRef<number | null>(null);
   
   const [formData, setFormData] = useState<QuoteFormData>({
@@ -101,11 +106,14 @@ const GetQuote = () => {
         stepFields = [];
     }
 
-    const newErrors: Record<string, string> = {};
+    const newErrors: QuoteFormErrors = {};
     for (const issue of result.error.issues) {
       const field = issue.path[0];
-      if (typeof field === "string" && stepFields.includes(field as keyof QuoteFormData) && !newErrors[field]) {
-        newErrors[field] = issue.message;
+      if (typeof field === "string" && stepFields.includes(field as keyof QuoteFormData)) {
+        const key = field as keyof QuoteFormData;
+        if (!newErrors[key]) {
+          newErrors[key] = issue.message;
+        }
       }
     }
 
@@ -151,7 +159,7 @@ const GetQuote = () => {
     setLoading(true);
     const attribution = loadAttribution();
     try {
-      const insertData = {
+      const insertData: QuoteInsert = {
         service_type: formData.serviceType,
         origin: formData.origin,
         destination: formData.destination,

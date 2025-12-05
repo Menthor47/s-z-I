@@ -36,6 +36,9 @@ const IndexEs = () => {
       title: "Servicios de reubicación",
       description: "Traslados empresariales y de oficinas con el máximo cuidado",
       priceRange: "500 € por proyecto de reubicación",
+      badge: "Ideal para reubicación",
+      highlight: true,
+      highlightVariant: "accent" as const,
     },
     {
       icon: Ship,

@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { quoteFormSchema, contactFormSchema } from "./validations";
+import { quoteFormSchemaEs, contactFormSchemaEs } from "./validations.es";
 
 describe("quoteFormSchema", () => {
   it("accepts a valid quote payload", () => {
@@ -63,6 +64,66 @@ describe("quoteFormSchema", () => {
       contactName: "John Doe",
       email: "john@example.com",
       phone: "+34612345678",
+    });
+
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("quoteFormSchemaEs", () => {
+  it("accepts a valid Spanish quote payload", () => {
+    const result = quoteFormSchemaEs.safeParse({
+      serviceType: "spanish-road",
+      origin: "Madrid",
+      destination: "Barcelona",
+      pickupDate: "2025-01-01",
+      deliveryDate: "2025-01-02",
+      weight: "500",
+      length: "200",
+      width: "100",
+      height: "150",
+      specialRequirements: [],
+      contactName: "Juan Pérez",
+      companyName: "Empresa Ejemplo",
+      email: "juan@example.com",
+      phone: "+34612345678",
+    });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects invalid Spanish email", () => {
+    const result = quoteFormSchemaEs.safeParse({
+      serviceType: "spanish-road",
+      origin: "Madrid",
+      destination: "Barcelona",
+      weight: "500",
+      specialRequirements: [],
+      contactName: "Juan Pérez",
+      email: "no-es-un-email",
+      phone: "+34612345678",
+    });
+
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("contactFormSchemaEs", () => {
+  it("accepts a minimal valid Spanish contact payload", () => {
+    const result = contactFormSchemaEs.safeParse({
+      name: "María López",
+      email: "maria@example.com",
+      message: "Necesito ayuda con un envío.",
+    });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects too-short Spanish message", () => {
+    const result = contactFormSchemaEs.safeParse({
+      name: "María López",
+      email: "maria@example.com",
+      message: "Hola",
     });
 
     expect(result.success).toBe(false);

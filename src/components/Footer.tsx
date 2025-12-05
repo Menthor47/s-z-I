@@ -1,11 +1,30 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Instagram, Music2 } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants";
-// Try direct path import as fallback
-import sziLogo from "../assets/szi-logo-mark.svg";
+import { SziLogo } from "@/components/SziLogo";
+import { FOOTER_LINKS, type FooterLinkKey } from "@/components/footerLinks";
+import { FOOTER_SERVICES, type FooterServiceKey } from "@/components/footerServices";
 
 export const Footer = () => {
   const businessInfo = BUSINESS_INFO;
+
+  const footerLinkLabels: Record<FooterLinkKey, string> = {
+    "services": "Our Services",
+    "get-quote": "Get Quote",
+    "relocation": "Relocation",
+    "about": "About Us",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+  };
+
+  const footerServiceLabels: Record<FooterServiceKey, string> = {
+    "spanish-road": "Spanish Road Transport",
+    european: "European Logistics",
+    global: "Global Shipping",
+    warehousing: "Warehousing",
+    "supply-chain": "Supply Chain",
+  };
 
   return (
     <footer className="border-t bg-muted/30">
@@ -13,12 +32,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <img
-                src={sziLogo}
+            <div className="flex items-center justify-end space-x-2">
+              <SziLogo
+                className="h-[5.25rem] w-auto rounded-lg shadow-sm"
                 alt="S&Z Trading / SZI Group logo"
-                className="h-10 w-auto rounded-lg bg-white object-contain shadow-sm"
               />
+
               <div>
                 <div className="font-bold text-trust-navy">S&Z TRADING</div>
                 <div className="text-xs text-muted-foreground uppercase">International S.C.A.</div>
@@ -80,11 +99,25 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Services</Link></li>
-              <li><Link to="/get-quote" className="text-sm text-muted-foreground hover:text-primary transition-colors">Get Quote</Link></li>
-              <li><Link to="/relocation" className="text-sm text-muted-foreground hover:text-primary transition-colors">Relocation</Link></li>
-              <li><Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.key}>
+                  {link.key === "privacy" ? (
+                    <a
+                      href="/privacy.html"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {footerLinkLabels[link.key]}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {footerLinkLabels[link.key]}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -92,11 +125,11 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li className="text-sm text-muted-foreground">Spanish Road Transport</li>
-              <li className="text-sm text-muted-foreground">European Logistics</li>
-              <li className="text-sm text-muted-foreground">Global Shipping</li>
-              <li className="text-sm text-muted-foreground">Warehousing</li>
-              <li className="text-sm text-muted-foreground">Supply Chain</li>
+              {FOOTER_SERVICES.map((service) => (
+                <li key={service.key} className="text-sm text-muted-foreground">
+                  {footerServiceLabels[service.key]}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -128,10 +161,6 @@ export const Footer = () => {
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} S&Z TRADING INTERNATIONAL S.C.A. All rights reserved.</p>
-          <div className="mt-2 space-x-4">
-            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
-          </div>
         </div>
       </div>
     </footer>

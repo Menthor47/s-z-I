@@ -36,6 +36,9 @@ const Index = () => {
       title: "Relocation Services",
       description: "Business and office relocations with care",
       priceRange: "€500+ per relocation project",
+      badge: "Best for moves",
+      highlight: true,
+      highlightVariant: "accent" as const,
     },
     {
       icon: Ship,

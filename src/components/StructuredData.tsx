@@ -93,6 +93,45 @@ export const LocalBusinessSchema = () => {
   );
 };
 
+interface ResourceArticleSchemaProps {
+  readonly title: string;
+  readonly description: string;
+  readonly slug: string;
+}
+
+export const ResourceArticleSchema = ({ title, description, slug }: ResourceArticleSchemaProps) => {
+  const { isSpanish } = useLocale();
+  const businessInfo = isSpanish ? BUSINESS_INFO_ES : BUSINESS_INFO_EN;
+  const url = isSpanish
+    ? `https://szitrans.eu/es/resources/${slug}`
+    : `https://szitrans.eu/resources/${slug}`;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    inLanguage: isSpanish ? "es-ES" : "en-GB",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: businessInfo.name,
+      url: "https://szitrans.eu",
+    },
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};
+
 export const ServicesFaqSchema = () => {
   const { isSpanish } = useLocale();
 
