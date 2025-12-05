@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { FooterEs } from "@/components/es/FooterEs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +14,7 @@ import { SEO } from "@/components/SEO";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageBreadcrumbs } from "@/components/PageBreadcrumbs";
+import { useLocale } from "@/hooks/useLocale";
 
 interface TimelineEvent {
   status: string;
@@ -36,6 +39,7 @@ interface Shipment {
 
 const TrackShipment = () => {
   const { toast } = useToast();
+  const { isSpanish } = useLocale();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [shipment, setShipment] = useState<Shipment | null>(null);
   const [loading, setLoading] = useState(false);
@@ -372,16 +376,18 @@ const TrackShipment = () => {
 
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Need help? Our support team is available 24/7
+              {isSpanish ? "¿Necesitas ayuda? Nuestro equipo está disponible 24/7" : "Need help? Our support team is available 24/7"}
             </p>
             <Button variant="outline" size="lg" asChild>
-              <a href="/contact">Contact Support</a>
+              <Link to={isSpanish ? "/es/contact" : "/contact"}>
+                {isSpanish ? "Contactar soporte" : "Contact Support"}
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <Footer />
+      {isSpanish ? <FooterEs /> : <Footer />}
     </div>
   );
 };

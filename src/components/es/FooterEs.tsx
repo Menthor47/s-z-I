@@ -100,21 +100,12 @@ export const FooterEs = () => {
             <ul className="space-y-2">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.key}>
-                  {link.key === "privacy" ? (
-                    <a
-                      href={`/es${link.path}`}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {footerLinkLabels[link.key]}
-                    </a>
-                  ) : (
-                    <Link
-                      to={`/es${link.path}`}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {footerLinkLabels[link.key]}
-                    </Link>
-                  )}
+                  <Link
+                    to={`/es${link.path}`}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {footerLinkLabels[link.key]}
+                  </Link>
                 </li>
               ))}
             </ul>

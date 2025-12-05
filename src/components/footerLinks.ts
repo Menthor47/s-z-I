@@ -21,5 +21,5 @@ export const FOOTER_LINKS: readonly FooterLinkConfig[] = [
   { key: "about", path: ROUTES.about.path },
   { key: "contact", path: ROUTES.contact.path },
   { key: "terms", path: ROUTES.terms.path },
-  { key: "privacy", path: "/privacy.html" },
+  { key: "privacy", path: ROUTES.privacy.path },
 ] as const;

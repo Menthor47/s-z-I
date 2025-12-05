@@ -6,7 +6,8 @@ export type RouteKey =
   | "get-quote"
   | "about"
   | "contact"
-  | "terms";
+  | "terms"
+  | "privacy";
 
 interface RouteConfig {
   readonly path: string;
@@ -23,4 +24,5 @@ export const ROUTES: RoutesRecord = {
   about: { path: "/about" },
   contact: { path: "/contact" },
   terms: { path: "/terms" },
+  privacy: { path: "/privacy" },
 };
